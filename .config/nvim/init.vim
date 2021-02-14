@@ -2,7 +2,6 @@
 call plug#begin()
 " colorschemes
 Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/forest-night'
 " status (or the like)
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
@@ -109,16 +108,7 @@ set nojoinspaces     " add ' ' (not '  ') when joining lines
 " color ------------------------------------------------------------------------
 set termguicolors background=dark
 let g:gruvbox_material_enable_italic = 1
-let g:forest_night_enable_italic     = 1
 colorscheme gruvbox-material
-nmap <silent> <F3> :call ChangeColorscheme('gruvbox-material')<CR>
-nmap <silent> <F4> :call ChangeColorscheme('forest-night')<CR>
-" change colorscheme on the fly
-function! ChangeColorscheme(colorscheme)
-  execute 'colorscheme' a:colorscheme
-  let g:lightline.colorscheme = substitute(a:colorscheme, '-', '_', '')
-  call lightline#init() | call lightline#colorscheme() | call lightline#update()
-endfunction
 
 " indentation ------------------------------------------------------------------
 set expandtab     " tabs are spaces
