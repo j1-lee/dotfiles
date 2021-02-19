@@ -78,14 +78,13 @@ nmap ga <Plug>(EasyAlign)
 
 " vim-maki settings ------------------------------------------------------------
 let g:maki_root = '~/Sync/wiki'
-let g:maki_journal = '~/Sync/wiki/journal'
-let g:maki_export = '~/Sync/wiki/export'
+let g:maki_export = '~/Sync/wiki/Export'
 
 " vim-startify settings --------------------------------------------------------
 let g:startify_bookmarks = [
       \ {'c': $MYVIMRC},
       \ {'w': '~/Sync/wiki/index.wiki'},
-      \ {'d': '~/Sync/wiki/journal/index.wiki'},
+      \ {'d': '~/Sync/wiki/Journal.wiki'},
       \ ]
 let g:startify_custom_header = []
 nmap <silent> <Leader>s :Startify<CR>
