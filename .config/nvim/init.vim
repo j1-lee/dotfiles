@@ -111,9 +111,9 @@ colorscheme gruvbox-material
 
 " indentation ------------------------------------------------------------------
 set expandtab     " tabs are spaces
-set tabstop=4     " # of visual spaces per tab
-set softtabstop=4 " # of spaces in tab when editing
-set shiftwidth=4  " # of spaces for indentation (when using >>)
+set tabstop=2     " # of visual spaces per tab
+set softtabstop=2 " # of spaces in tab when editing
+set shiftwidth=2  " # of spaces for indentation (when using >>)
 " re-indenting keeps visual selection
 xmap > >gv
 xmap < <gv
@@ -175,7 +175,7 @@ map! <M-BS> <C-w>
 augroup init_vim
   autocmd!
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-  autocmd FileType sh,vim setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType markdown,wiki setlocal spell spelllang+=cjk,es
   autocmd FileType python,sh,vim,snippets,matlab setlocal colorcolumn=81,82,83
   autocmd WinEnter * set cursorline
