@@ -177,7 +177,7 @@ augroup init_vim
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType markdown,wiki setlocal spell spelllang+=cjk,es
-  autocmd FileType python,sh,vim,snippets,matlab setlocal colorcolumn=81,82,83
+  autocmd FileType python,sh,vim,snippets,matlab setlocal colorcolumn=81,82
   autocmd WinEnter * set cursorline
   autocmd WinLeave * set nocursorline
   autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
