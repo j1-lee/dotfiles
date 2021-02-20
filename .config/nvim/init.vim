@@ -79,6 +79,8 @@ nmap ga <Plug>(EasyAlign)
 " vim-maki settings ------------------------------------------------------------
 let g:maki_root = '~/Sync/wiki'
 let g:maki_export = '~/Sync/wiki/Export'
+nmap <silent> <Leader>w<Leader>w :exec 'MakiGo Journal/' . strftime('%F')<CR>
+nmap <silent> <Leader>wi :MakiGo Journal<CR>
 
 " vim-startify settings --------------------------------------------------------
 let g:startify_bookmarks = [
