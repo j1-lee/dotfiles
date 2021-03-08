@@ -1,14 +1,20 @@
 configuration {
-    modi:             "drun";
+    modi:             "drun,window";
     display-drun:     ">";
+    display-window:   ">";
+    window-format:    "{t}";
     theme:            "slate-j1";
     terminal:         "mate-terminal";
     lines:            5;
     font:             "Ubuntu Regular 16";
+    show-icons:       true;
+    icon-theme:       "Papirus-Dark";
     kb-move-end:      "";
     kb-remove-to-eol: "";
     kb-accept-entry:  "Return,KP_Enter,Control+l";
     kb-cancel:        "Escape,Control+bracketleft,Control+e";
     kb-row-down:      "Down,Control+j";
     kb-row-up:        "Up,Control+k";
+    kb-row-select:    "";
+    kb-mode-next:     "Control+space";
 }
