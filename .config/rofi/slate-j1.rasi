@@ -8,6 +8,7 @@
 window {
   width: 512px;
   location: center;
+  font: "Ubuntu Regular 16";
 }
 
 mainbox {
@@ -30,6 +31,7 @@ inputbar {
 listview {
   cycle: false;
   scrollbar: false;
+  lines: 5;
 }
 
 element {

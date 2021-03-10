@@ -3,8 +3,6 @@ configuration {
   window-format:    "{t}";
   theme:            "slate-j1";
   terminal:         "mate-terminal";
-  lines:            5;
-  font:             "Ubuntu Regular 16";
   show-icons:       true;
   icon-theme:       "Papirus-Dark";
   kb-accept-entry:  "Return,KP_Enter,Control+l";
