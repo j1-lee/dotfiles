@@ -9,12 +9,12 @@ configuration {
     font:             "Ubuntu Regular 16";
     show-icons:       true;
     icon-theme:       "Papirus-Dark";
-    kb-move-end:      "";
-    kb-remove-to-eol: "";
     kb-accept-entry:  "Return,KP_Enter,Control+l";
+    kb-move-end:      ""; // unbind Control+e
     kb-cancel:        "Escape,Control+bracketleft,Control+e";
     kb-row-down:      "Down,Control+j";
+    kb-remove-to-eol: ""; // unbind Control+k
     kb-row-up:        "Up,Control+k";
-    kb-row-select:    "";
+    kb-row-select:    ""; // unbind Control+space
     kb-mode-next:     "Control+space";
 }
