@@ -1,20 +1,20 @@
 configuration {
-    modi:             "drun,window";
-    display-drun:     ">";
-    display-window:   ">";
-    window-format:    "{t}";
-    theme:            "slate-j1";
-    terminal:         "mate-terminal";
-    lines:            5;
-    font:             "Ubuntu Regular 16";
-    show-icons:       true;
-    icon-theme:       "Papirus-Dark";
-    kb-accept-entry:  "Return,KP_Enter,Control+l";
-    kb-move-end:      ""; // unbind Control+e
-    kb-cancel:        "Escape,Control+bracketleft,Control+e";
-    kb-row-down:      "Down,Control+j";
-    kb-remove-to-eol: ""; // unbind Control+k
-    kb-row-up:        "Up,Control+k";
-    kb-row-select:    ""; // unbind Control+space
-    kb-mode-next:     "Control+space";
+  modi:             "drun,window";
+  display-drun:     ">";
+  display-window:   ">";
+  window-format:    "{t}";
+  theme:            "slate-j1";
+  terminal:         "mate-terminal";
+  lines:            5;
+  font:             "Ubuntu Regular 16";
+  show-icons:       true;
+  icon-theme:       "Papirus-Dark";
+  kb-accept-entry:  "Return,KP_Enter,Control+l";
+  kb-move-end:      ""; // unbind Control+e
+  kb-cancel:        "Escape,Control+bracketleft,Control+e";
+  kb-row-down:      "Down,Control+j";
+  kb-remove-to-eol: ""; // unbind Control+k
+  kb-row-up:        "Up,Control+k";
+  kb-row-select:    ""; // unbind Control+space
+  kb-mode-next:     "Control+space";
 }
