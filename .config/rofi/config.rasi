@@ -1,7 +1,5 @@
 configuration {
   modi:             "drun,window";
-  display-drun:     ">";
-  display-window:   ">";
   window-format:    "{t}";
   theme:            "slate-j1";
   terminal:         "mate-terminal";
