@@ -208,6 +208,7 @@ nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 " commands ---------------------------------------------------------------------
 command! CD cd %:p:h " cd to current dicretory
 command! -bang Q q<bang> " no more annoying 'not an editor command Q'
+command! -bang W w<bang>
 command! -nargs=1 QuickFixJump
       \ try | c<args> | catch /E553/ | cc | catch /E42/ | endtry
 
