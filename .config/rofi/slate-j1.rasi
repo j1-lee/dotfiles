@@ -26,12 +26,14 @@ inputbar, element, error-message {
 
 inputbar {
   children: [entry];
+  border: 1px; border-color: black; border-radius: 4px;
 }
 
 listview {
   cycle: false;
   scrollbar: false;
   lines: 5;
+  border: 1px; border-color: black; border-radius: 4px;
 }
 
 element {
@@ -47,4 +49,5 @@ element selected {
 error-message{
   border: 2px;
   border-color: red;
+  border-radius: 4px;
 }
