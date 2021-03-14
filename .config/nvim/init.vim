@@ -127,6 +127,7 @@ set lazyredraw " redraw only when needed
 set noshowmode " don't need -- INSERT --
 set title      " change title of terminal
 set list listchars=tab:•\ ,trail:•,extends:»,precedes:« " show unprintable chars
+set fillchars=fold:\  " remove fold filling
 let g:netrw_banner  = 0  " remove header of file explorer
 let g:netrw_winsize = 20 " 20% width
 " resize window
@@ -180,6 +181,7 @@ augroup init_vim
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType markdown,wiki setlocal spell spelllang+=cjk,es
   autocmd FileType python,sh,vim,snippets,matlab setlocal colorcolumn=81,82
+  autocmd FileType vim setlocal foldmethod=marker
   autocmd WinEnter * set cursorline
   autocmd WinLeave * set nocursorline
   autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
