@@ -204,6 +204,9 @@ imap <C-c> <C-g>u<Esc>[S1z=`]a<C-g>u
 nmap <C-c> [S1z=
 " disable Q
 nmap Q <Nop>
+" execute line/selection as vimscript
+nmap <F9> :call RunVimscript(0)<CR>
+xmap <F9> :<C-u>call RunVimscript(1)<CR>
 " show the highlight group at the current position
 nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')<CR>
 
@@ -254,4 +257,14 @@ function! GetFirstError(...)
     endif
   endfor
   return l:err
+endfunction
+
+" execute line/selection as vimscript
+function! RunVimscript(visual)
+  let l:lines = a:visual ? getline("'<", "'>") : [getline('.')]
+  echo join(l:lines, "\n")
+  if confirm('Execute this Vimscript?', "&Yes\n&No", 2) != 1 | return | endif
+  let l:tempname = tempname()
+  call writefile(l:lines, l:tempname)
+  execute 'source' l:tempname
 endfunction
