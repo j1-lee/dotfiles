@@ -57,7 +57,7 @@ let g:lightline.component = {
       \     ? printf(' %3d%%', line('.') * 100 / line('$')) : ''
       \ }",
       \ 'fileinfo' : "%{
-      \   (&fenc == 'utf-8' || &fenc == '') &&  &ff == 'unix'
+      \   (&fenc == 'utf-8' || &fenc == '') && &ff == 'unix'
       \     ? '' : &fileencoding . '[' . &fileformat . ']'
       \ }",
       \ 'errors'   : "%{
@@ -193,8 +193,6 @@ augroup END
 nmap Y y$
 " x sends a char to the black hole
 noremap x "_x
-" remove trailing whitespaces
-nmap <F12> :%s/\s\+$//e<CR>:nohl<CR>:echo 'Removed trailing whitespaces'<CR>
 " toggle netrw, and config
 nmap <silent> <Leader>f :Lexplore!<CR>
 nmap <silent> <Leader>c :call ToggleVimrc()<CR>
@@ -209,6 +207,8 @@ nmap <F9> :call RunVimscript(0)<CR>
 xmap <F9> :<C-u>call RunVimscript(1)<CR>
 " show the highlight group at the current position
 nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')<CR>
+" remove trailing whitespaces
+nmap <F12> :%s/\s\+$//e<CR>:nohl<CR>:echo 'Removed trailing whitespaces'<CR>
 
 " commands ---------------------------------------------------------------------
 command! CD cd %:p:h " cd to current dicretory
@@ -232,7 +232,6 @@ function! ToggleVimrc()
   endif
   execute 'vsplit' $MYVIMRC
 endfunction
-
 " toggle quickfix
 function! ToggleQuickFix()
   for b in tabpagebuflist()
@@ -243,7 +242,6 @@ function! ToggleQuickFix()
   endfor
   copen
 endfunction
-
 " return first error/warning (latter if no error exists)
 function! GetFirstError(...)
   let l:filter = 'v:val.bufnr == bufnr()'
@@ -258,7 +256,6 @@ function! GetFirstError(...)
   endfor
   return l:err
 endfunction
-
 " execute line/selection as vimscript
 function! RunVimscript(visual)
   let l:lines = a:visual ? getline("'<", "'>") : [getline('.')]
