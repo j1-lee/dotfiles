@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if (($# == 0))
+then
+  >&2 echo 'Search terms not specified.'
+  >&2 echo 'Example: paper newey mcfadden 1994'
+  exit 1
+fi
+
+readarray -d '' papers \
+  < <(locate --null --all --basename --ignore-case "$@" .pdf)
+
+if ((${#papers[@]} > 100)); then echo 'Too many files found.' >&2; exit 1; fi
+
+case ${#papers[@]} in
+  0) echo 'Nothing found.' >&2; exit 1 ;;
+  1) paper="${papers[0]}" ;;
+  *)
+    for i in ${!papers[@]}
+    do
+      printf '%4d %s\n' $i "$(basename "${papers[$i]}" .pdf)"
+    done
+
+    while read -e -p 'Which one do you want? '
+    do
+      if [[ -z $REPLY ]]
+      then
+        exit
+      elif [[ $REPLY =~ ^[0-9]+$ ]] && (($REPLY >= 0 && $REPLY < ${#papers[@]}))
+      then
+        paper="${papers[$REPLY]}"
+        break
+      fi
+    done
+esac
+
+echo "$paper"
+xdg-open "$paper"
