@@ -198,8 +198,8 @@ nmap <silent> <Leader>f :Lexplore!<CR>
 nmap <silent> <Leader>c :call ToggleVimrc()<CR>
 nmap <silent> <Leader>q :call ToggleQuickFix()<CR>
 " autocorrect last spell error
-imap <C-c> <C-g>u<Esc>[S1z=`]a<C-g>u
-nmap <C-c> [S1z=
+imap <C-s> <C-g>u<Esc>[S1z=`]a<C-g>u
+nmap <C-s> [S1z=
 " disable Q
 nmap Q <Nop>
 " execute line/selection as vimscript
