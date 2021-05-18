@@ -1,4 +1,3 @@
-setlocal tabstop=2 softtabstop=2 shiftwidth=2
 setlocal spell
 
 " auto-pairs and vim-surround settings
