@@ -32,10 +32,8 @@ download "$jsonurl" "$jsonfile"
 
 for i in {0..6}
 do
-  date=$(jq --raw-output ".images[$i].startdate" "$jsonfile")
-  url=$(jq --raw-output ".images[$i].url" "$jsonfile")
-  title=$(jq --raw-output ".images[$i].title" "$jsonfile")
-  copyright=$(jq --raw-output ".images[$i].copyright" "$jsonfile")
+  IFS=$'\n' read -d '' date url title copyright \
+    < <(jq -r '.images['$i'] | .startdate, .url, .title, .copyright' $jsonfile)
 
   outfile="$historydir/bing_$date.jpg"
 
@@ -45,7 +43,7 @@ do
     download "${url/#/http://www.bing.com}" "$outfile"
     echo "$date; $title; $copyright" >> "$historyfile"
 
-    if [[ $i -eq 0 ]] # for today's bing image...
+    if ((i == 0)) # for today's bing image...
     then
       if $add_label # if "add_label" flag is on
       then
