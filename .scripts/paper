@@ -18,7 +18,11 @@ case ${#papers[@]} in
   *)
     for i in ${!papers[@]}
     do
-      printf '%4d %s\n' $i "$(basename "${papers[$i]}" .pdf)"
+      basename="$(basename "${papers[$i]}" .pdf)"
+      title="$(pdfinfo "${papers[$i]}" 2>/dev/null | sed -n 's/^Title:\s\+//p')"
+      printf "\033[?7l" # turn off line wrapping
+      printf "%4d %s \033[32;3m%s\033[0m\n" $i "$basename" "$title" > /dev/tty
+      printf "\033[?7h" # turn on line wrapping
     done
 
     while read -e -p 'Which one do you want? '
