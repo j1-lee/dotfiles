@@ -220,23 +220,22 @@ command! -nargs=1 QuickFixJump
 " functions --------------------------------------------------------------------
 " toggle vimrc
 function! ToggleVimrc()
-  for b in tabpagebuflist()
-    if expand('#' . b . ':t') ==# fnamemodify($MYVIMRC, ':t')
-      execute 'bdelete' b
-      return
+  let l:w = bufwinnr($MYVIMRC)
+  if l:w > 0
+    execute (winnr('$') > 1) ? l:w . 'close' : 'enew'
+  else
+    if winnr('$') == 1 && bufname() == '' && !&modified
+      execute 'edit' $MYVIMRC
+    else
+      execute 'vsplit' $MYVIMRC
     endif
-  endfor
-  if len(tabpagebuflist()) == 1 && bufname() == '' && !&modified
-    execute 'edit' $MYVIMRC
-    return
   endif
-  execute 'vsplit' $MYVIMRC
 endfunction
 " toggle quickfix
 function! ToggleQuickFix()
-  for b in tabpagebuflist()
-    if getbufvar(b, '&buftype') == 'quickfix'
-      execute len(tabpagebuflist()) == 1 ? 'enew' : 'cclose'
+  for l:w in range(1, winnr('$'))
+    if getwinvar(l:w, '&buftype') == 'quickfix'
+      execute (winnr('$') == 1) ? 'enew' : 'cclose'
       return
     endif
   endfor
