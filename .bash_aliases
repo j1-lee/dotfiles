@@ -1,6 +1,6 @@
 alias ytdl-audio='youtube-dl --extract-audio'
 alias matlab-cli='matlab -nosplash -nodesktop'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"'
+alias lf='lf -last-dir-path=$HOME/.lfdir; cd "$(cat $HOME/.lfdir)"'
 alias mpv='mpv --no-audio-display'
 alias tlmgr='tlmgr --verify-repo=none --no-persistent-downloads'
 alias latexmk='latexmk -pdf -halt-on-error'

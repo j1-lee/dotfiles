@@ -1,0 +1,64 @@
+# settings
+set incsearch
+set scrolloff 3
+set previewer ~/.config/lf/pv.sh
+
+# shell-related settings
+set shell sh
+set ifs "\n"
+set shellopts -eu # safer shell cmds; -e: exit on error, -u: error on unset vars
+
+# custom maps
+map gd cd ~/Downloads
+map gw cd ~/Workspace
+map gs cd ~/Sync
+map gm cd /media
+map D trash
+
+# custom commands
+# make directories
+cmd mkdir %mkdir "$@"
+# bulk rename (https://github.com/gokcehan/lf/wiki/Tips)
+cmd bulk-rename ${{
+  old=$(mktemp)
+  new=$(mktemp)
+  printf "$fx\n" > $old
+  printf "$fx\n" > $new
+  $EDITOR $new
+  [ "$(wc -l < $new)" -ne "$(wc -l < $old)" ] && { rm $old $new; exit; }
+  paste $old $new | while IFS= read -r names; do
+    src=$(printf "$names" | cut -f1)
+    dst=$(printf "$names" | cut -f2)
+    if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+      continue
+    fi
+    mv "$src" "$dst"
+  done
+  rm $old $new
+  lf -remote "send $id unselect"
+}}
+
+# redefine existing commands
+# open; vim for text files, xdg-open for others
+cmd open ${{
+  for f in $fx; do
+    mimetype="$(file --mime-type --brief --dereference "$f")"
+    if [ "${mimetype%%/*}" = "text" ] || [ "$mimetype" = "inode/x-empty" ]; then
+      textfx="${textfx:+${textfx}$IFS}$f"
+    else
+      xdg-open "$f" >/dev/null 2>&1 &
+    fi
+  done
+  if [ -n "${textfx:-}" ]; then vim $textfx; fi
+}}
+# on-cd; set terminal title to pwd
+cmd on-cd &printf "\033]0;$PWD\007" >/dev/tty
+
+# external tools
+cmd trash %set -f; gio trash $fx # trash
+cmd j %lf -remote "send $id cd '$(autojump $1)'" # autojump
+
+# startup
+on-cd # set terminal title
+
+# vim: colorcolumn=81,82
