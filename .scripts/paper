@@ -16,14 +16,14 @@ case ${#papers[@]} in
   0) echo 'Nothing found.' >&2; exit 1 ;;
   1) paper="${papers[0]}" ;;
   *)
+    printf "\033[?7l" > /dev/tty # turn off line wrapping
     for i in ${!papers[@]}
     do
       basename="$(basename "${papers[$i]}" .pdf)"
       title="$(pdfinfo "${papers[$i]}" 2>/dev/null | sed -n 's/^Title:\s\+//p')"
-      printf "\033[?7l" # turn off line wrapping
       printf "%4d %s \033[32;3m%s\033[0m\n" $i "$basename" "$title" > /dev/tty
-      printf "\033[?7h" # turn on line wrapping
     done
+    printf "\033[?7h" > /dev/tty # turn on line wrapping
 
     while read -e -p 'Which one do you want? '
     do
