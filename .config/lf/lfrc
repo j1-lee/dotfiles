@@ -39,17 +39,13 @@ cmd bulk-rename ${{
 }}
 
 # redefine existing commands
-# open; vim for text files, xdg-open for others
 cmd open ${{
-  for f in $fx; do
-    mimetype="$(file --mime-type --brief --dereference "$f")"
-    if [ "${mimetype%%/*}" = "text" ] || [ "$mimetype" = "inode/x-empty" ]; then
-      textfx="${textfx:+${textfx}$IFS}$f"
-    else
-      xdg-open "$f" >/dev/null 2>&1 &
-    fi
-  done
-  if [ -n "${textfx:-}" ]; then vim $textfx; fi
+  case "$(file --mime-type --brief --dereference "${fx%%$IFS*}")" in
+    text/*) vim $fx;;
+    audio/*|video/*) mpv --no-audio-display $fx;;
+    image/*) eom $fx >/dev/null 2>&1 &;;
+    *) for f in $fx; do xdg-open "$f" >/dev/null 2>&1 & done;;
+  esac
 }}
 # on-cd; set terminal title to pwd
 cmd on-cd &printf "\033]0;$PWD\007" >/dev/tty
