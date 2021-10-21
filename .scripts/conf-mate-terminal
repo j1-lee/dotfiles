@@ -10,7 +10,7 @@ use-system-font=false
 use-theme-colors=false
 scrollbar-position='hidden'
 default-show-menubar=false
-font='Monospace 16'
+font='Fira Code Regular 16'
 allow-bold=true"
 
 # themes are from http://terminal.sexy
@@ -36,9 +36,15 @@ background-color='#2d2d2d'
 foreground-color='#e6e1dc'
 bold-color='#e6e1dc'"
     ;;
+  nord)
+    mate_profile="$mate_profile
+palette='#3b4252:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#4c566a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4'
+background-color='#2e3440'
+foreground-color='#d8dee9'
+bold-color='#d8dee9'"
+    ;;
   *)
     echo "Applying default theme."
-    echo "Available themes: default, londontube, railscasts."
     conf-mate-terminal default
     exit
     ;;
