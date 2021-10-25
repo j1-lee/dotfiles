@@ -39,4 +39,4 @@ case ${#papers[@]} in
 esac
 
 echo "$paper"
-xdg-open "$paper"
+xdg-open "$paper" 2>/dev/null
