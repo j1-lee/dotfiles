@@ -206,7 +206,8 @@ nmap Q <Nop>
 nmap <F9> :call RunVimscript(0)<CR>
 xmap <F9> :<C-u>call RunVimscript(1)<CR>
 " show the highlight group at the current position
-nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')<CR>
+nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')
+      \ '→' synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')<CR>
 " remove trailing whitespaces
 nmap <F12> :%s/\s\+$//e<CR>:nohl<CR>:echo 'Removed trailing whitespaces'<CR>
 
