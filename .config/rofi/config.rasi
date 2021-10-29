@@ -1,16 +1,8 @@
 configuration {
   modi:             "drun,window";
   window-format:    "{t}";
-  theme:            "slate-j1";
+  theme:            "j1-nord";
   terminal:         "mate-terminal";
   show-icons:       true;
   icon-theme:       "Papirus-Dark";
-  kb-accept-entry:  "Return,KP_Enter,Control+l";
-  kb-move-end:      ""; // unbind Control+e
-  kb-cancel:        "Escape,Control+bracketleft,Control+e";
-  kb-row-down:      "Down,Control+j";
-  kb-remove-to-eol: ""; // unbind Control+k
-  kb-row-up:        "Up,Control+k";
-  kb-row-select:    ""; // unbind Control+space
-  kb-mode-next:     "Control+space";
 }
