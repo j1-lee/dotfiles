@@ -1,7 +1,7 @@
 " vim-plug plugins -------------------------------------------------------------
 call plug#begin()
 " colorschemes
-Plug 'sainnhe/gruvbox-material'
+Plug 'arcticicestudio/nord-vim'
 " status (or the like)
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
@@ -35,7 +35,7 @@ call deoplete#custom#option({
       \ })
 
 " lightline.vim settings -------------------------------------------------------
-let g:lightline = {'colorscheme': 'gruvbox_material'}
+let g:lightline = {'colorscheme': 'nord'}
 let g:lightline.subseparator = {'left': '', 'right': ''}
 let g:lightline.active = {
       \ 'left'  : [['mode'], ['filename', 'readonly', 'modified']],
@@ -108,8 +108,10 @@ set nojoinspaces     " add ' ' (not '  ') when joining lines
 
 " color ------------------------------------------------------------------------
 set termguicolors background=dark
-let g:gruvbox_material_enable_italic = 1
-colorscheme gruvbox-material
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_diff_background = 1
+colorscheme nord
 
 " indentation ------------------------------------------------------------------
 set expandtab     " tabs are spaces
