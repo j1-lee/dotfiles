@@ -35,36 +35,7 @@ call deoplete#custom#option({
       \ })
 
 " lightline.vim settings -------------------------------------------------------
-let g:lightline = {'colorscheme': 'nord'}
-let g:lightline.subseparator = {'left': '', 'right': ''}
-let g:lightline.active = {
-      \ 'left'  : [['mode'], ['filename', 'readonly', 'modified']],
-      \ 'right' : [['lineinfo'], ['filetype'], ['errors', 'fileinfo']]
-      \ }
-let g:lightline.inactive = {
-      \ 'left'  : [['filename']],
-      \ 'right' : [['lineinfo']]
-      \ }
-let g:lightline.tabline = {'left': [['tabs']], 'right': []}
-let g:lightline.tab = {'active': ['filename'], 'inactive': ['filename']}
-let g:lightline.component = {
-      \ 'mode'     : "%{winwidth(0) >= 40 ? lightline#mode() : ''}",
-      \ 'readonly' : "%{&readonly && &modifiable ? '×' : ''}",
-      \ 'modified' : "%{&modified ? '+' : ''}",
-      \ 'filetype' : "%{winwidth(0) >= 40 ? &filetype : ''}",
-      \ 'lineinfo' : "%l/%L%{
-      \   winwidth(0) >= 40
-      \     ? printf(' %3d%%', line('.') * 100 / line('$')) : ''
-      \ }",
-      \ 'fileinfo' : "%{
-      \   (&fenc == 'utf-8' || &fenc == '') && &ff == 'unix'
-      \     ? '' : &fileencoding . '[' . &fileformat . ']'
-      \ }",
-      \ 'errors'   : "%{
-      \   index(['tex', 'python'], &filetype) >= 0
-      \     ? get(GetFirstError(), 'status', '') : ''
-      \ }",
-      \ }
+call j1#lightline#configure()
 
 " ultisnips settings -----------------------------------------------------------
 let g:UltiSnipsExpandTrigger       = '<Tab>'
@@ -166,10 +137,10 @@ nmap <C-k> <C-w>k
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 " jump between quickfix entries
-nmap <silent> [q :QuickFixJump prev<CR>
-nmap <silent> ]q :QuickFixJump next<CR>
-nmap <silent> [Q :QuickFixJump first<CR>
-nmap <silent> ]Q :QuickFixJump last<CR>
+nmap <silent> [q :call j1#mapfuncs#jump_qf('prev')<CR>
+nmap <silent> ]q :call j1#mapfuncs#jump_qf('next')<CR>
+nmap <silent> [Q :call j1#mapfuncs#jump_qf('first')<CR>
+nmap <silent> ]Q :call j1#mapfuncs#jump_qf('last')<CR>
 " new tab
 nmap <Leader>tn :tabnew<CR>
 nmap <Leader>tt <C-w>T
@@ -197,16 +168,16 @@ nmap Y y$
 noremap x "_x
 " toggle netrw, and config
 nmap <silent> <Leader>f :Lexplore!<CR>
-nmap <silent> <Leader>c :call ToggleVimrc()<CR>
-nmap <silent> <Leader>q :call ToggleQuickFix()<CR>
+nmap <silent> <Leader>c :call j1#mapfuncs#toggle_vimrc()<CR>
+nmap <silent> <Leader>q :call j1#mapfuncs#toggle_qf()<CR>
 " autocorrect last spell error
 imap <C-s> <C-g>u<Esc>[S1z=`]a<C-g>u
 nmap <C-s> [S1z=
 " disable Q
 nmap Q <Nop>
 " execute line/selection as vimscript
-nmap <F9> :call RunVimscript(0)<CR>
-xmap <F9> :<C-u>call RunVimscript(1)<CR>
+nmap <F9> :call j1#mapfuncs#run_vimscript(0)<CR>
+xmap <F9> :<C-u>call j1#mapfuncs#run_vimscript(1)<CR>
 " show the highlight group at the current position
 nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')
       \ '→' synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')<CR>
@@ -217,53 +188,3 @@ nmap <F12> :%s/\s\+$//e<CR>:nohl<CR>:echo 'Removed trailing whitespaces'<CR>
 command! CD cd %:p:h " cd to current dicretory
 command! -bang Q q<bang> " no more annoying 'not an editor command Q'
 command! -bang W w<bang>
-command! -nargs=1 QuickFixJump
-      \ try | c<args> | catch /E553/ | cc | catch /E42/ | endtry
-
-" functions --------------------------------------------------------------------
-" toggle vimrc
-function! ToggleVimrc()
-  let l:w = bufwinnr($MYVIMRC)
-  if l:w > 0
-    execute (winnr('$') > 1) ? l:w . 'close' : 'enew'
-  else
-    if winnr('$') == 1 && bufname() == '' && !&modified
-      execute 'edit' $MYVIMRC
-    else
-      execute 'vsplit' $MYVIMRC
-    endif
-  endif
-endfunction
-" toggle quickfix
-function! ToggleQuickFix()
-  for l:w in range(1, winnr('$'))
-    if getwinvar(l:w, '&buftype') == 'quickfix'
-      execute (winnr('$') == 1) ? 'enew' : 'cclose'
-      return
-    endif
-  endfor
-  copen
-endfunction
-" return first error/warning (latter if no error exists)
-function! GetFirstError(...)
-  let l:filter = 'v:val.bufnr == bufnr()'
-  if a:0 | let l:filter .= '&& v:val.lnum == a:1' | endif
-  let l:list = filter(getqflist() + getloclist(0), l:filter)
-  for l:type in ['E', 'W']
-    let l:err = get(filter(copy(l:list), 'v:val.type == l:type'), 0, {})
-    if !empty(l:err)
-      let l:err.status = l:err.type . ':' . l:err.lnum
-      break
-    endif
-  endfor
-  return l:err
-endfunction
-" execute line/selection as vimscript
-function! RunVimscript(visual)
-  let l:lines = a:visual ? getline("'<", "'>") : [getline('.')]
-  echo join(l:lines, "\n")
-  if confirm('Execute this Vimscript?', "&Yes\n&No", 2) != 1 | return | endif
-  let l:tempname = tempname()
-  call writefile(l:lines, l:tempname)
-  execute 'source' l:tempname
-endfunction
