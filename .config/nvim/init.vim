@@ -11,37 +11,33 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
-Plug 'SirVer/ultisnips'
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-" languages
-Plug 'dense-analysis/ale'
-Plug 'deoplete-plugins/deoplete-jedi'
+" filetype
 Plug 'lervag/vimtex'
 Plug 'j1-lee/vim-maki'
+" LSP, completion, and snippet
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+" nvim-cmp sources
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-buffer'
 call plug#end()
 
 " auto-pairs settings ----------------------------------------------------------
 let g:AutoPairsMultilineClose = 0
 
-" deoplete.nvim settings -------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#var('omni', 'input_patterns', {
-      \ 'tex': g:vimtex#re#deoplete,
-      \ })
-call deoplete#custom#option({
-      \ 'ignore_case'   : v:true,
-      \ 'smart_case'    : v:true,
-      \ 'ignore_sources': {'_': ['ultisnips']}
-      \ })
-
 " lightline.vim settings -------------------------------------------------------
 call j1#lightline#configure()
 
-" ultisnips settings -----------------------------------------------------------
-let g:UltiSnipsExpandTrigger       = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-let g:UltiSnipsEditSplit           = 'vertical'
+" nvim-lspconfig and nvim-cmp settings -----------------------------------------
+lua require 'j1_lsp'
+
+" vim-vsnip settings -----------------------------------------------------------
+imap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+smap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
 " vim-easy-align settings ------------------------------------------------------
 xmap ga <Plug>(EasyAlign)
@@ -110,15 +106,9 @@ nmap <silent> <M-h> :vertical resize -4<CR>
 nmap <silent> <M-l> :vertical resize +4<CR>
 
 " completion -------------------------------------------------------------------
-set wildoptions-=pum           " old-style horizontal wildmenu
-set wildmode=longest:full,full " behavior when <Tab> is pressed
-set completeopt=noinsert,menuone
-" key mapping for next/previous/yes
-inoremap <expr> <C-j> (pumvisible() ? "\<C-n>" : "\<C-j>")
-inoremap <expr> <C-k> (pumvisible() ? "\<C-p>" : "\<C-k>")
-inoremap <expr> <C-l> (pumvisible() ? "\<C-y>" : "\<C-l>")
-" <CR> discards the suggestion
-inoremap <expr> <CR> (pumvisible() ? "\<C-e>\<CR>" : "\<CR>")
+set wildoptions-=pum           " old-style horizontal suggestion (cmdline)
+set wildmode=longest:full,full " behavior when <Tab> is pressed  (cmdline)
+set pumheight=10
 
 " search -----------------------------------------------------------------------
 set ignorecase smartcase
