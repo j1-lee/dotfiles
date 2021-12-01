@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 " filetype
 Plug 'lervag/vimtex'
 Plug 'j1-lee/vim-maki'
+Plug 'jalvesaq/Nvim-R'
 " LSP, completion, and snippet
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -32,6 +33,12 @@ call j1#lightline#configure()
 
 " nvim-lspconfig and nvim-cmp settings -----------------------------------------
 lua require 'j1_lsp'
+
+" nvim-r settings---------------------------------------------------------------
+let g:R_assign_map = '<M-->'
+let g:R_args = ['--no-save', '--no-restore', '--quiet']
+let g:R_esc_term = 0
+let g:r_syntax_fun_pattern = 1
 
 " vim-vsnip settings -----------------------------------------------------------
 imap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
