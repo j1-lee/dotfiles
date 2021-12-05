@@ -23,6 +23,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-buffer'
+" others
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " auto-pairs settings ----------------------------------------------------------
@@ -49,6 +51,9 @@ smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 " vim-easy-align settings ------------------------------------------------------
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" vim-gutentags settings -------------------------------------------------------
+let g:gutentags_exclude_project_root = [$HOME]
 
 " vim-maki settings ------------------------------------------------------------
 let g:maki_root = '~/Sync/wiki'
