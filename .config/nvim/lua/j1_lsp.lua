@@ -10,7 +10,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lspconfig = require 'lspconfig'
-local servers = {'pyright', 'r_language_server'}
+local servers = {'pyright'}
 for _, server in ipairs(servers) do
   lspconfig[server].setup {capabilities = capabilities}
 end
