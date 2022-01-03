@@ -82,8 +82,6 @@ let g:vimtex_toc_config = {
 set encoding=utf-8 fileformats=unix,dos
 set clipboard=unnamedplus
 set wildignorecase   " ignore case when completing file names
-set inccommand=split " live substitution
-set nojoinspaces     " add ' ' (not '  ') when joining lines
 
 " color ------------------------------------------------------------------------
 set termguicolors background=dark
@@ -163,8 +161,6 @@ augroup init_vim
 augroup END
 
 " misc keymaps -----------------------------------------------------------------
-" Y yanks till the line end
-nmap Y y$
 " x sends a char to the black hole
 noremap x "_x
 " toggle netrw, and config
