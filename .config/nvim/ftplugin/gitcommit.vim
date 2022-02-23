@@ -1,7 +1,7 @@
 setlocal colorcolumn=73,74
 
 augroup ftplugin_gitcommit
-  autocmd!
+  autocmd! * <buffer>
   autocmd BufWinEnter <buffer> call cursor(1, 1) | startinsert!
   autocmd InsertEnter <buffer> call <SID>choose_type()
 augroup END

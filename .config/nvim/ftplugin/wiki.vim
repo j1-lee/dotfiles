@@ -3,7 +3,7 @@ setlocal spell spelllang+=cjk,es
 nmap <buffer> <silent> _ :call <SID>toggle_acento()<CR>
 
 augroup ftplugin_wiki
-  autocmd!
+  autocmd! * <buffer>
   autocmd BufWritePost <buffer> silent MakiExportHtml
 augroup END
 
