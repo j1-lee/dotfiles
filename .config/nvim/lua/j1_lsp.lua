@@ -15,6 +15,8 @@ local on_attach = function(_, bufnr)
   end
   nmap_buf('<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>')
   nmap_buf('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+  nmap_buf('[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>')
+  nmap_buf(']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>')
 end
 
 local lspconfig = require 'lspconfig'
