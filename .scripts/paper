@@ -30,7 +30,7 @@ case ${#papers[@]} in
       if [[ -z $REPLY ]]
       then
         exit
-      elif [[ $REPLY =~ ^[0-9]+$ ]] && (($REPLY >= 0 && $REPLY < ${#papers[@]}))
+      elif [[ $REPLY =~ ^[0-9]+$ ]] && ((REPLY >= 0 && REPLY < ${#papers[@]}))
       then
         paper="${papers[$REPLY]}"
         break

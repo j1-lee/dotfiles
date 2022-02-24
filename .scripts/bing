@@ -56,7 +56,7 @@ do
           -compose atop -bordercolor '#000000C0' -border 16x16 \
           miff:- \
         | composite -gravity southeast \
-          -geometry +$((16 + $x_padding))+$((16 + $y_padding)) \
+          -geometry +$((16 + x_padding))+$((16 + y_padding)) \
           - "$outfile" "$wallpaperfile"
       else
         cp "$outfile" "$wallpaperfile" # otherwise just copy

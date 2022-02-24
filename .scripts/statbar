@@ -4,7 +4,7 @@
 hash syncthing >/dev/null 2>&1 && { # if syncthing exists
   log=$(awk -F ';' 'END {print $1}' ~/Sync/raspi-log | xargs -0 date +%s -d)
   now=$(date +%s)
-  if [[ $((($now - $log) / 60)) -gt 20 ]] # check if the server is on
+  if [[ $(((now - log) / 60)) -gt 20 ]] # check if the server is on
   then
     echo -n "Sync: Off  "
   else # check if syncthing is running
@@ -23,8 +23,7 @@ END                { printf "%.1f°C  ", temp }
 free -m | awk '
 /^Mem:/ {
   used = $3 + $5; free = $2
-  used = (used >= 1000) ? sprintf("%.2fG", used / 1000) \
-                        : sprintf("%dM", used)
+  used = (used >= 1000) ? sprintf("%.2fG", used / 1000) : sprintf("%dM", used)
   free = sprintf("%.2fG", free / 1000)
   print used "/" free
 }
