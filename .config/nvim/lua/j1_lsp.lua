@@ -1,5 +1,6 @@
-local cmp = require 'cmp'
+local j1_lsp = {}
 
+local cmp = require 'cmp'
 cmp.setup {
   snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body) end},
   sources = cmp.config.sources({{name = 'nvim_lsp'}}, {{name = 'buffer'}}),
@@ -9,8 +10,8 @@ cmp.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local on_attach = function(_, bufnr)
-  local nmap_buf = function(lhs, rhs)
+local function on_attach(_, bufnr)
+  local function nmap_buf(lhs, rhs)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', lhs, rhs, {silent = true})
   end
   nmap_buf('<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>')
@@ -19,8 +20,11 @@ local on_attach = function(_, bufnr)
   nmap_buf(']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>')
 end
 
-local lspconfig = require 'lspconfig'
-local servers = {'pyright'}
-for _, server in ipairs(servers) do
-  lspconfig[server].setup {capabilities = capabilities, on_attach = on_attach}
+function j1_lsp.setup(servers)
+  local lspconfig = require 'lspconfig'
+  for _, server in ipairs(servers) do
+    lspconfig[server].setup {capabilities = capabilities, on_attach = on_attach}
+  end
 end
+
+return j1_lsp

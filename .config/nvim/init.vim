@@ -34,7 +34,7 @@ let g:AutoPairsMultilineClose = 0
 call j1#lightline#configure()
 
 " nvim-lspconfig and nvim-cmp settings -----------------------------------------
-lua require 'j1_lsp'
+lua require('j1_lsp').setup {'pyright'}
 
 " nvim-r settings---------------------------------------------------------------
 let g:R_assign_map = '<M-->'
