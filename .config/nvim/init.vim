@@ -142,8 +142,8 @@ nmap <silent> ]q :call j1#mapfuncs#jump_qf('next')<CR>
 nmap <silent> [Q :call j1#mapfuncs#jump_qf('first')<CR>
 nmap <silent> ]Q :call j1#mapfuncs#jump_qf('last')<CR>
 " new tab
-nmap <Leader>tn :tabnew<CR>
-nmap <Leader>tt <C-w>T
+nmap <silent> <Leader>tn :tabnew<CR>
+nmap <silent> <Leader>tt <C-w>T
 " Alt+BS deletes the last word (in insert and command)
 map! <M-BS> <C-w>
 
