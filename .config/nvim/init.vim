@@ -23,6 +23,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-omni'
 " others
 Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
