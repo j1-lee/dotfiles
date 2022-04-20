@@ -1,0 +1,38 @@
+{
+  "frac": {
+    "prefix": "//",
+    "body": ["\\frac{$1}{$2}"]
+  },
+  "leq": {
+    "prefix": "<=",
+    "body": ["\\leq"]
+  },
+  "geq": {
+    "prefix": ">=",
+    "body": ["\\geq"]
+  },
+  "equiv": {
+    "prefix": "==",
+    "body": ["\\equiv"]
+  },
+  "ldots": {
+    "prefix": "..",
+    "body": ["\\ldots"]
+  },
+  "cdots": {
+    "prefix": "++",
+    "body": ["\\cdots"]
+  },
+  "inv": {
+    "prefix": "inv",
+    "body": ["^{-1}"]
+  },
+  "sum": {
+    "prefix": "sum",
+    "body": ["\\sum_{$1}^{$2}"]
+  },
+  "prod": {
+    "prefix": "prod",
+    "body": ["\\prod_{$1}^{$2}"]
+  }
+}

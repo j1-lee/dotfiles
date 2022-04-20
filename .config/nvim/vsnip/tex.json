@@ -1,0 +1,232 @@
+{
+  "package": {
+    "prefix": "use",
+    "body": [
+      "\\usepackage{$1}"
+    ]
+  },
+  "section": {
+    "prefix": "sec",
+    "body": [
+      "\\section{$1}"
+    ]
+  },
+  "subsection": {
+    "prefix": "ssec",
+    "body": [
+      "\\subsection{$1}"
+    ]
+  },
+  "boldface": {
+    "prefix": "bf",
+    "body": [
+      "\\textbf{$1}"
+    ]
+  },
+  "emph": {
+    "prefix": "em",
+    "body": [
+      "\\emph{$1}"
+    ]
+  },
+  "item": {
+    "prefix": "i",
+    "body": [
+      "\\item"
+    ]
+  },
+  "bibliogaphy": {
+    "prefix": "bib",
+    "body": [
+      "\\bibliographystyle{chicago}",
+      "\\bibliograph{${1:\\jobname}}"
+    ]
+  },
+  "environment": {
+    "prefix": "env",
+    "body": [
+      "\\begin{$1}",
+      "\t$0",
+      "\\end{$1}"
+    ]
+  },
+  "align": {
+    "prefix": "ali",
+    "body": [
+      "\\begin{align*}",
+      "\t$0",
+      "\\end{align*}"
+    ]
+  },
+  "displaymath": {
+    "prefix": "dis",
+    "body": [
+      "\\begin{displaymath}",
+      "\t$0",
+      "\\end{displaymath}"
+    ]
+  },
+  "gather": {
+    "prefix": "gat",
+    "body": [
+      "\\begin{gather*}",
+      "\t$0",
+      "\\end{gather*}"
+    ]
+  },
+  "itemize": {
+    "prefix": "ite",
+    "body": [
+      "\\begin{itemize}",
+      "\t\\item $0",
+      "\\end{itemize}"
+    ]
+  },
+  "enumerate": {
+    "prefix": "enu",
+    "body": [
+      "\\begin{enumerate}",
+      "\t\\item $0",
+      "\\end{enumerate}"
+    ]
+  },
+  "center": {
+    "prefix": "cen",
+    "body": [
+      "\\begin{center}",
+      "\t$0",
+      "\\end{center}"
+    ]
+  },
+  "figure": {
+    "prefix": "fig",
+    "body": [
+      "\\begin{figure}[ht!]",
+      "\t\\centering",
+      "\t\\includegraphics[width=0.8\\textwidth]{$1}",
+      "\t\\caption{$2}",
+      "\\end{figure}"
+    ]
+  },
+  "frac": {
+    "prefix": "//",
+    "body": [
+      "\\frac{$1}{$2}"
+    ]
+  },
+  "leq": {
+    "prefix": "<=",
+    "body": [
+      "\\leq"
+    ]
+  },
+  "geq": {
+    "prefix": ">=",
+    "body": [
+      "\\geq"
+    ]
+  },
+  "equiv": {
+    "prefix": "==",
+    "body": [
+      "\\equiv"
+    ]
+  },
+  "ldots": {
+    "prefix": "..",
+    "body": [
+      "\\ldots"
+    ]
+  },
+  "cdots": {
+    "prefix": "++",
+    "body": [
+      "\\cdots"
+    ]
+  },
+  "inv": {
+    "prefix": "inv",
+    "body": [
+      "^{-1}"
+    ]
+  },
+  "sum": {
+    "prefix": "sum",
+    "body": [
+      "\\sum_{$1}^{$2}"
+    ]
+  },
+  "prod": {
+    "prefix": "prod",
+    "body": [
+      "\\prod_{$1}^{$2}"
+    ]
+  },
+  "note": {
+    "prefix": "newnote",
+    "body": [
+      "\\documentclass{article}",
+      "",
+      "\\usepackage{amsmath,amssymb}",
+      "\\usepackage[margin=1in]{geometry}",
+      "\\usepackage{setspace}\\onehalfspacing",
+      "\\usepackage{fancyhdr}",
+      "",
+      "\\pagestyle{fancy}",
+      "\\lhead{$1}",
+      "\\rhead{Jaewon Lee---\\today}",
+      "",
+      "\\begin{document}",
+      "$0",
+      "\\end{document}"
+    ]
+  },
+  "article": {
+    "prefix": "newarticle",
+    "body": [
+      "\\documentclass{article}",
+      "",
+      "\\title{$1}",
+      "\\author{Jaewon Lee}",
+      "\\date{\\today}",
+      "",
+      "\\usepackage{amsmath,amssymb,amsthm}",
+      "\\usepackage[margin=1.5in]{geometry}",
+      "\\usepackage{setspace}\\onehalfspacing",
+      "",
+      "\\begin{document}",
+      "\\maketitle",
+      "",
+      "\\begin{abstract}",
+      "\t$2",
+      "\\end{abstract}",
+      "",
+      "\\section{${3:Introduction}}",
+      "",
+      "$0",
+      "\\end{document}"
+    ]
+  },
+  "beamer": {
+    "prefix": "newbeamer",
+    "body": [
+      "\\documentclass{beamer}",
+      "",
+      "\\title{$1}",
+      "\\author{Jaewon Lee}",
+      "\\date{\\today}",
+      "",
+      "\\usetheme{Frankfurt}",
+      "",
+      "\\begin{document}",
+      "\\begin{frame}[plain]",
+      "\t\\maketitle",
+      "\\end{frame}",
+      "",
+      "\\begin{frame}{$2}",
+      "\t$0",
+      "\\end{frame}",
+      "\\end{document}"
+    ]
+  }
+}
