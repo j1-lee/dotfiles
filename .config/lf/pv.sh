@@ -3,6 +3,7 @@
 case "${1##*.}" in
   pdf) pdftotext -l 3 "$1" -;;
   wiki) highlight --out-format ansi --syntax md "$1";;
+  json) highlight --out-format ansi "$1";;
   html) w3m -dump "$1";;
   csv) head --lines "$3" "$1";;
   rar) rar l "$1";;
