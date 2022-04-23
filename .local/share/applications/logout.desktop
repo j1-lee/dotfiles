@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Log Out
+Comment=Log out of the system
+Icon=system-log-out
+Terminal=false
+Exec=mate-session-save --logout-dialog
+TryExec=mate-session-save
+Categories=System

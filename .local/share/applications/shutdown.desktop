@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Shut Down
+Comment=Shut down the system
+Icon=system-shutdown
+Terminal=false
+Exec=mate-session-save --shutdown-dialog
+TryExec=mate-session-save
+Categories=System
