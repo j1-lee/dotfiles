@@ -1,8 +1,8 @@
 configuration {
   modi:             "drun,window";
   window-format:    "{t}";
-  theme:            "j1-nord";
   terminal:         "mate-terminal";
   show-icons:       true;
   icon-theme:       "Papirus-Dark";
 }
+@theme "j1-nord"

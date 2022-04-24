@@ -28,13 +28,15 @@ prompt {
 element {
   text-color: #8e95a4;
   highlight: none #d8dee9;
+  spacing: 8px;
 }
 
-element selected {
+element selected, element-text selected, element-icon selected {
   background-color: #3b4252;
 }
 
 error-message {
+  margin: 20% 30%;
   border: 2px;
   border-color: #bf616a;
   border-radius: 4px;
