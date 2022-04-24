@@ -1,15 +1,5 @@
 local j1_lsp = {}
 
-local cmp = require 'cmp'
-cmp.setup {
-  snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body) end},
-  sources = cmp.config.sources({{name = 'nvim_lsp'}}, {{name = 'buffer'}}),
-  completion = {completeopt = 'menuone,noinsert'},
-}
-cmp.setup.filetype({'tex'}, {
-  sources = cmp.config.sources({{name = 'omni'}}, {{name = 'buffer'}})
-})
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 

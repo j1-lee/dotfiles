@@ -34,7 +34,8 @@ let g:AutoPairsMultilineClose = 0
 " lightline.vim settings -------------------------------------------------------
 call j1#lightline#configure()
 
-" nvim-lspconfig and nvim-cmp settings -----------------------------------------
+" nvim-cmp and nvim-lspconfig settings -----------------------------------------
+lua require('j1_cmp')
 lua require('j1_lsp').setup {'pyright'}
 
 " nvim-r settings---------------------------------------------------------------
