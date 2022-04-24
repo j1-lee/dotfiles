@@ -3,6 +3,5 @@ configuration {
   window-format:    "{t}";
   terminal:         "mate-terminal";
   show-icons:       true;
-  icon-theme:       "Papirus-Dark";
 }
-@theme "j1-nord"
+@theme "j1-yaru"

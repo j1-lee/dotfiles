@@ -1,0 +1,46 @@
+* {
+  background-color: #181818;
+  text-color: #b5b5b5;
+  font: "Ubuntu Regular 16";
+}
+
+window {
+  fullscreen: true;
+  background-color: black/50%;
+}
+
+mainbox {
+  margin: 20% 30%;
+  border: 1px;
+  border-color: #2c2c2c;
+  border-radius: 4px;
+  children: [inputbar, listview];
+}
+
+inputbar, element, error-message {
+  padding: 16px;
+}
+
+entry {
+  text-color: #f7f7f7;
+}
+
+prompt {
+  enabled: false;
+}
+
+element {
+  spacing: 8px;
+}
+
+element selected, element-text selected, element-icon selected {
+  text-color: #f7f7f7;
+  background-color: #2c2c2c;
+}
+
+error-message {
+  margin: 20% 30%;
+  border: 2px;
+  border-color: #c7162b;
+  border-radius: 4px;
+}

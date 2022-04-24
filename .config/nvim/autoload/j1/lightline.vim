@@ -1,5 +1,5 @@
 function! j1#lightline#configure()
-  let g:lightline = {'colorscheme': 'nord'}
+  let g:lightline = {'colorscheme': 'gruvbox_material'}
   let g:lightline.subseparator = {'left': '', 'right': ''}
   let g:lightline.active = {
         \ 'left'  : [['mode'], ['filename', 'readonly', 'modified']],

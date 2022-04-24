@@ -1,7 +1,7 @@
 " vim-plug plugins -------------------------------------------------------------
 call plug#begin()
 " colorschemes
-Plug 'arcticicestudio/nord-vim'
+Plug 'sainnhe/gruvbox-material'
 " status (or the like)
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
@@ -87,10 +87,8 @@ set wildignorecase   " ignore case when completing file names
 
 " color ------------------------------------------------------------------------
 set termguicolors background=dark
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_uniform_diff_background = 1
-colorscheme nord
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
 
 " indentation ------------------------------------------------------------------
 set expandtab     " tabs are spaces
