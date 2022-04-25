@@ -27,7 +27,7 @@
     "prefix": "bib",
     "body": [
       "\\bibliographystyle{chicago}",
-      "\\bibliograph{${1:\\jobname}}"
+      "\\bibliography{${1:\\jobname}}"
     ]
   }
 }
