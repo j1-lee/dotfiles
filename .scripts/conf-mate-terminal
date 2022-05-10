@@ -50,4 +50,4 @@ bold-color='#d8dee9'"
     ;;
 esac
 
-echo "$mate_profile" | dconf load /org/mate/terminal/
+dconf load /org/mate/terminal/ <<< "$mate_profile"
