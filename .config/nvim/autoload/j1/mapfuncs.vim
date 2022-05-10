@@ -35,4 +35,5 @@ function! j1#mapfuncs#run_vimscript(visual)
   if confirm('Execute this Vimscript?', "&Yes\n&No", 2) != 1 | return | endif
   let l:tempname = tempname()
   call writefile(l:lines, l:tempname)
+  execute 'source' l:tempname
 endfunction
