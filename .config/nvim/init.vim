@@ -17,7 +17,7 @@ Plug 'j1-lee/vim-maki'
 Plug 'jalvesaq/Nvim-R'
 " LSP, completion, and snippet
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp', {'commit': 'bba6fb6'}
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 " nvim-cmp sources
 Plug 'hrsh7th/cmp-nvim-lsp'
