@@ -42,6 +42,7 @@ lua require('j1_lsp').setup {'pyright'}
 let g:R_assign_map = '<M-->'
 let g:R_args = ['--no-save', '--no-restore', '--quiet']
 let g:R_esc_term = 0
+let g:R_rconsole_width = 0 " always use horizontal split
 let g:r_syntax_fun_pattern = 1
 
 " vim-vsnip settings -----------------------------------------------------------
