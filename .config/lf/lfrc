@@ -39,6 +39,8 @@ cmd bulk-rename ${{
   rm $old $new
   lf -remote "send $id unselect"
 }}
+# open-with
+cmd open-with %"$@" "$fx"
 
 # redefine existing commands
 cmd open ${{
