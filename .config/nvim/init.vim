@@ -174,9 +174,6 @@ imap <C-s> <C-g>u<Esc>[S1z=`]a<C-g>u
 nmap <C-s> [S1z=
 " disable Q
 nmap Q <Nop>
-" execute line/selection as vimscript
-nmap <F9> :call j1#mapfuncs#run_vimscript(0)<CR>
-xmap <F9> :<C-u>call j1#mapfuncs#run_vimscript(1)<CR>
 " show the highlight group at the current position
 nmap <F10> :echo 'Highlight:' synIDattr(synID(line('.'),col('.'),1),'name')
       \ '→' synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')<CR>

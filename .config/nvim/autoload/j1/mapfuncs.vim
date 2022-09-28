@@ -27,13 +27,3 @@ endfunction
 function! j1#mapfuncs#jump_qf(where)
   try | execute 'c' . a:where | catch /E553/ | cc | catch /E42/ | endtry
 endfunction
-
-" execute line/selection as vimscript
-function! j1#mapfuncs#run_vimscript(visual)
-  let l:lines = a:visual ? getline("'<", "'>") : [getline('.')]
-  echo join(l:lines, "\n")
-  if confirm('Execute this Vimscript?', "&Yes\n&No", 2) != 1 | return | endif
-  let l:tempname = tempname()
-  call writefile(l:lines, l:tempname)
-  execute 'source' l:tempname
-endfunction
