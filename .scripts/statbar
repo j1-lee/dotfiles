@@ -1,17 +1,6 @@
 #!/usr/bin/env bash
 # print temperature and memory usage; perhaps useful for desktop panel
 
-hash syncthing >/dev/null 2>&1 && { # if syncthing exists
-  log=$(awk -F ';' 'END {print $1}' ~/Sync/raspi-log | xargs -0 date +%s -d)
-  now=$(date +%s)
-  if [[ $(((now - log) / 60)) -gt 20 ]] # check if the server is on
-  then
-    echo -n "Sync: Off  "
-  else # check if syncthing is running
-    pgrep -c syncthing | awk '{ printf "Sync: %s  ", ($1 > 0 ? "On" : "Off") }'
-  fi
-}
-
 # temperature
 sensors -u | awk '
 BEGIN              { temp = 0 }
