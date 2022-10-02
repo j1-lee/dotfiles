@@ -1,3 +1,5 @@
+local util = require 'util'
+
 local augroup = vim.api.nvim_create_augroup('init_lua', {clear = true})
 
 local function autocmd(event, opts)
@@ -15,14 +17,7 @@ autocmd('FileType', {
 autocmd('WinEnter', {command = [[set cursorline]]})
 autocmd('WinLeave', {command = [[set nocursorline]]})
 
-autocmd('BufReadPost', {
-  callback = function()
-    local pos = vim.api.nvim_buf_get_mark(0, '"')
-    if pos[1] > 0 and pos[1] <= vim.fn.line('$') then
-      vim.api.nvim_win_set_cursor(0, pos)
-    end
-  end
-})
+autocmd('BufReadPost', {callback = util.last_position_jump})
 
 autocmd('BufWritePost', {
   pattern = 'plugins.lua',

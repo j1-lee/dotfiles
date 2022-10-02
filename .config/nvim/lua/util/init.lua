@@ -47,4 +47,11 @@ function util.toggle_quickfix()
   )
 end
 
+function util.last_position_jump()
+  local pos = vim.api.nvim_buf_get_mark(0, '"')
+  if pos[1] > 0 and pos[1] <= vim.fn.line('$') then
+    vim.api.nvim_win_set_cursor(0, pos)
+  end
+end
+
 return util
