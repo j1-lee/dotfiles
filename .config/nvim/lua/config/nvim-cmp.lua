@@ -11,4 +11,3 @@ cmp.setup {
 cmp.setup.filetype({'tex'}, {
   sources = cmp.config.sources({{name = 'omni'}}, {{name = 'buffer'}})
 })
-
