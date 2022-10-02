@@ -89,6 +89,7 @@ return require('packer').startup(function(use)
       vim.g.R_args = {'--no-save', '--no-restore', '--quiet'}
       vim.g.R_esc_term = 0
       vim.g.R_rconsole_width = 0 -- always use horizontal split
+      vim.g.R_assign = 0 -- don't imap _ to ->
       vim.g.r_syntax_fun_pattern = 1
     end
   }
@@ -112,19 +113,16 @@ return require('packer').startup(function(use)
   use {
     'L3MON4D3/LuaSnip',
     config = function()
+      local luasnip = require 'luasnip'
       vim.keymap.set('i', '<Tab>', function()
-        if vim.fn['luasnip#expand_or_jumpable']() then
+        if luasnip.expand_or_jumpable() then
           return '<Plug>luasnip-expand-or-jump'
         else
           return '<Tab>'
         end
       end, {expr = true})
-      vim.keymap.set('s', '<Tab>', function()
-        require('luasnip').jump(1)
-      end)
-      vim.keymap.set({'i', 's'}, '<S-Tab>', function()
-        require('luasnip').jump(-1)
-      end)
+      vim.keymap.set('s', '<Tab>', function() luasnip.jump(1) end)
+      vim.keymap.set({'i', 's'}, '<S-Tab>', function() luasnip.jump(-1) end)
       require("luasnip.loaders.from_snipmate").lazy_load()
     end
   }
