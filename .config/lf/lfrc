@@ -18,8 +18,6 @@ map gm cd /media
 map D trash
 
 # custom commands
-# make directories
-cmd mkdir %mkdir "$@"
 # bulk rename (https://github.com/gokcehan/lf/wiki/Tips)
 cmd bulk-rename ${{
   old=$(mktemp)
