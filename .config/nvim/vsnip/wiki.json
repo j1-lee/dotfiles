@@ -1,8 +1,0 @@
-{
-  "title": {
-    "prefix": "title",
-    "body": [
-      "# $TM_FILENAME_BASE"
-    ]
-  }
-}

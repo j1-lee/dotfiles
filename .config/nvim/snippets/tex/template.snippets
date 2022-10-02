@@ -1,0 +1,63 @@
+snippet newnote
+	\\documentclass{article}
+
+	\\usepackage{amsmath,amssymb}
+	\\usepackage[margin=1in]{geometry}
+	\\usepackage{setspace}\\onehalfspacing
+	\\usepackage{fancyhdr}
+
+	\\pagestyle{fancy}
+	\\lhead{$1}
+	\\rhead{Jaewon Lee---\\today}
+
+	\\begin{document}
+
+	$0
+
+	\\end{document}
+
+
+snippet newarticle
+	\\documentclass{article}
+
+	\\title{$1}
+	\\author{Jaewon Lee}
+	\\date{\\today}
+
+	\\usepackage{amsmath,amssymb,amsthm}
+	\\usepackage[margin=1.5in]{geometry}
+	\\usepackage{setspace}\\onehalfspacing
+
+	\\begin{document}
+	\\maketitle
+
+	\\begin{abstract}
+		$2
+	\\end{abstract}
+
+	\\section{${3:Introduction}}
+
+	$0
+
+	\\end{document}
+
+snippet newbeamer
+	\\documentclass{beamer}
+
+	\\title{$1}
+	\\author{Jaewon Lee}
+	\\date{\\today}
+
+	\\usetheme{Frankfurt}
+
+	\\begin{document}
+
+	\\begin{frame}[plain]
+		\\maketitle
+	\\end{frame}
+
+	\\begin{frame}{$2}
+		$0
+	\\end{frame}
+
+	\\end{document}
