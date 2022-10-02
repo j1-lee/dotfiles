@@ -111,22 +111,29 @@ return require('packer').startup(
     }
 
     use {
-      'hrsh7th/vim-vsnip',
+      'L3MON4D3/LuaSnip',
       config = function()
-        vim.keymap.set({'i', 's'}, '<Tab>',
-          "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
-          {expr = true})
-        vim.keymap.set({'i', 's'}, '<S-Tab>',
-          "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
-          {expr = true})
-        vim.g.vsnip_snippet_dir = vim.fn.stdpath('config') .. '/vsnip'
+        vim.keymap.set('i', '<Tab>', function()
+          if vim.fn['luasnip#expand_or_jumpable']() then
+            return '<Plug>luasnip-expand-or-jump'
+          else
+            return '<Tab>'
+          end
+        end, {expr = true})
+        vim.keymap.set('s', '<Tab>', function()
+          require('luasnip').jump(1)
+        end)
+        vim.keymap.set({'i', 's'}, '<S-Tab>', function()
+          require('luasnip').jump(-1)
+        end)
+        require("luasnip.loaders.from_snipmate").lazy_load()
       end
     }
 
     -- nvim-cmp sources
 
     use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-vsnip'
+    use 'saadparwaiz1/cmp_luasnip'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-omni'
 
