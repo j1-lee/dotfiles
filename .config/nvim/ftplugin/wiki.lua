@@ -12,8 +12,3 @@ local function add_tilde()
 end
 
 vim.keymap.set('n', '_', add_tilde, {buffer = 0})
-
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = [[MakiExportHtml]],
-  buffer = 0
-})
