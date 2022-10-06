@@ -40,10 +40,6 @@ return require('packer').startup(function(use)
     'windwp/nvim-autopairs',
     config = function()
       local autopairs = require 'nvim-autopairs'
-      local rule = require 'nvim-autopairs.rule'
-
-      autopairs.setup()
-      autopairs.add_rule(rule('$', '$', 'tex'))
 
       vim.keymap.set({'n', 'i'}, '<M-p>', -- toggle autopairs
         function()
@@ -115,6 +111,12 @@ return require('packer').startup(function(use)
     'L3MON4D3/LuaSnip',
     config = function()
       local luasnip = require 'luasnip'
+
+      luasnip.config.setup {
+        region_check_events = 'InsertEnter',
+        store_selection_keys = '<Tab>',
+      }
+
       vim.keymap.set('i', '<Tab>', function()
         if luasnip.expand_or_jumpable() then
           return '<Plug>luasnip-expand-or-jump'
@@ -124,6 +126,7 @@ return require('packer').startup(function(use)
       end, {expr = true})
       vim.keymap.set('s', '<Tab>', function() luasnip.jump(1) end)
       vim.keymap.set({'i', 's'}, '<S-Tab>', function() luasnip.jump(-1) end)
+
       require("luasnip.loaders.from_snipmate").lazy_load()
     end
   }
