@@ -17,7 +17,7 @@ function util.remove_trailing_spaces()
   end
 end
 
-local function toggle_window(opener, finder, closer)
+local function toggle_window(opener, closer, finder)
   local wins = vim.api.nvim_tabpage_list_wins(0)
 
   for _, win in ipairs(wins) do
@@ -34,16 +34,16 @@ end
 function util.toggle_vimrc()
   toggle_window (
     function() vim.cmd [[vsplit $MYVIMRC]] end,
-    function(buf) return vim.api.nvim_buf_get_name(buf) == vim.env.MYVIMRC end,
-    function(win) vim.api.nvim_win_close(win, false) end
+    function(win) vim.api.nvim_win_close(win, false) end,
+    function(buf) return vim.api.nvim_buf_get_name(buf) == vim.env.MYVIMRC end
   )
 end
 
 function util.toggle_quickfix()
   toggle_window (
     function() vim.cmd [[copen]] end,
-    function(buf) return vim.bo[buf].buftype == 'quickfix' end,
-    function() vim.cmd [[cclose]] end
+    function() vim.cmd [[cclose]] end,
+    function(buf) return vim.bo[buf].buftype == 'quickfix' end
   )
 end
 
