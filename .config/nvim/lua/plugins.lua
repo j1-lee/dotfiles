@@ -41,6 +41,8 @@ return require('packer').startup(function(use)
     config = function()
       local autopairs = require 'nvim-autopairs'
 
+      autopairs.setup()
+
       vim.keymap.set({'n', 'i'}, '<M-p>', -- toggle autopairs
         function()
           if autopairs.state.disabled then
