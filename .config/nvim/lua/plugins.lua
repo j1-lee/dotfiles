@@ -77,7 +77,7 @@ return require('packer').startup(function(use)
     'j1-lee/vim-maki',
     config = function()
       vim.g.maki_root = '$HOME/Sync/wiki'
-      vim.g.maki_export = '$HOME/Sync/wiki'
+      vim.g.maki_export = '$HOME/Sync/wiki/export'
       vim.g.maki_auto_export = 1
     end
   }
