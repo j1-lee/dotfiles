@@ -1,53 +1,59 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
 
-# To reset the configuration, run the following:
-# dconf reset -f /org/mate/terminal/
+from sys import argv
+from subprocess import run
 
-mate_profile="[profiles/default]
-visible-name='Default'
-copy-selection=true
-use-system-font=false
-use-theme-colors=false
-scrollbar-position='hidden'
-default-show-menubar=false
-font='Fira Code Regular 16'
-allow-bold=true"
+colors = {
+    'default': { # https://terminal.sexy
+        'palette': ['#151515', '#ac4142', '#90a959', '#f4bf75', '#6a9fb5', '#aa759f', '#75b5aa', '#d0d0d0',
+                    '#505050', '#ac4142', '#90a959', '#f4bf75', '#6a9fb5', '#aa759f', '#75b5aa', '#f5f5f5'],
+        'background': '#151515',
+        'foreground': '#d0d0d0'
+    },
+    'londontube': {
+        'palette': ['#231f20', '#ee2e24', '#00853e', '#ffd204', '#009ddc', '#98005d', '#85cebc', '#d9d8d8',
+                    '#737171', '#ee2e24', '#00853e', '#ffd204', '#009ddc', '#98005d', '#85cebc', '#ffffff'],
+        'background': '#231f20',
+        'foreground': '#d9d8d8'
+    },
+    'nord': { # https://www.nordtheme.com/
+        'palette': ['#3b4252', '#bf616a', '#a3be8c', '#ebcb8b', '#81a1c1', '#b48ead', '#88c0d0', '#e5e9f0',
+                    '#4c566a', '#bf616a', '#a3be8c', '#ebcb8b', '#81a1c1', '#b48ead', '#8fbcbb', '#eceff4'],
+        'background': '#2e3440',
+        'foreground': '#d8dee9'
+    },
+    'kanagawa': { # https://github.com/rebelot/kanagawa.nvim
+        'palette': ['#090618', '#c34043', '#76946a', '#c0a36e', '#7e9cd8', '#957fb8', '#6a9589', '#c8c093',
+                    '#727169', '#e82424', '#98bb6c', '#e6c384', '#7fb4ca', '#938aa9', '#7aa89f', '#dcd7ba'],
+        'background': '#1f1f28',
+        'foreground': '#dcd7ba'
+    },
+}
 
-# themes are from http://terminal.sexy
-case $1 in
-  default)
-    mate_profile="$mate_profile
-palette='#151515:#ac4142:#90a959:#f4bf75:#6a9fb5:#aa759f:#75b5aa:#d0d0d0:#505050:#ac4142:#90a959:#f4bf75:#6a9fb5:#aa759f:#75b5aa:#f5f5f5'
-background-color='#151515'
-foreground-color='#d0d0d0'
-bold-color='#d0d0d0'"
-    ;;
-  londontube)
-    mate_profile="$mate_profile
-palette='#231f20:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#d9d8d8:#737171:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#ffffff'
-background-color='#231f20'
-foreground-color='#d9d8d8'
-bold-color='#d9d8d'"
-    ;;
-  railscasts)
-    mate_profile="$mate_profile
-palette='#2b2b2b:#da4939:#a5c261:#ffc66d:#6d9cbe:#b6b3eb:#519f50:#e6e1dc:#5a647e:#da4939:#a5c261:#ffc66d:#6d9cbe:#b6b3eb:#519f50:#f9f7f3'
-background-color='#2d2d2d'
-foreground-color='#e6e1dc'
-bold-color='#e6e1dc'"
-    ;;
-  nord)
-    mate_profile="$mate_profile
-palette='#3b4252:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#4c566a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4'
-background-color='#2e3440'
-foreground-color='#d8dee9'
-bold-color='#d8dee9'"
-    ;;
-  *)
-    echo "Applying default theme."
-    conf-mate-terminal default
-    exit
-    ;;
-esac
+if len(argv) == 1:
+    print("Available themes:", *colors.keys())
+    exit()
 
-dconf load /org/mate/terminal/ <<< "$mate_profile"
+if argv[1] == 'reset':
+    run(['dconf', 'reset', '-f', '/org/mate/terminal/'])
+    exit()
+
+color = colors.get(argv[1], colors['default'])
+
+stdin = f"""
+    [profiles/default]
+    visible-name='Default'
+    copy-selection=true
+    use-system-font=false
+    use-theme-colors=false
+    scrollbar-position='hidden'
+    default-show-menubar=false
+    font='Fira Code Regular 12'
+    allow-bold=true
+    palette='{":".join(color["palette"])}'
+    background-color='{color["background"]}'
+    foreground-color='{color["foreground"]}'
+    bold-color='{color["foreground"]}'
+"""
+
+run(['dconf', 'load', '/org/mate/terminal/'], text=True, input=stdin)
