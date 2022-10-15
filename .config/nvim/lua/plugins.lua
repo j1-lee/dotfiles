@@ -5,14 +5,12 @@ return require('packer').startup(function(use)
   -- colorscheme
 
   use {
-    'sainnhe/gruvbox-material',
+    'rebelot/kanagawa.nvim',
     config = function()
       vim.opt.termguicolors = true
-      vim.g.gruvbox_material_background = 'hard'
-      vim.cmd [[colorscheme gruvbox-material]]
+      vim.cmd [[colorscheme kanagawa]]
     end
   }
-
 
   -- status (or the like)
 
@@ -29,7 +27,12 @@ return require('packer').startup(function(use)
     end
   }
 
-  use 'mhinz/vim-signify'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 
   -- editing
 
