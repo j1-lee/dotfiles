@@ -1,5 +1,5 @@
 vim.opt.encoding = 'utf-8'
-vim.opt.fileformats = {'unix', 'dos'}
+vim.opt.fileformats = { 'unix', 'dos' }
 vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.expandtab = true -- tabs are spaces
@@ -19,14 +19,14 @@ vim.opt.showmode = false -- don't need -- INSERT --
 vim.opt.title = true -- change title of terminal
 
 vim.opt.list = true -- show unprintable chars
-vim.opt.listchars = {tab = '• ', trail = '•', extends = '»', precedes = '«'}
-vim.opt.fillchars = {fold = ' '} -- remove fold filling
+vim.opt.listchars = { tab = '• ', trail = '•', extends = '»', precedes = '«' }
+vim.opt.fillchars = { fold = ' ' } -- remove fold filling
 
 vim.g.netrw_banner = 0 -- remove header in netrw
 vim.g.netrw_winsize = 20 -- 20% width
 
 vim.opt.wildoptions:remove 'pum' -- show suggestions horizontally (cmdline)
-vim.opt.wildmode = {'longest:full', 'full'} -- behavior when <Tab> is pressed
+vim.opt.wildmode = { 'longest:full', 'full' } -- behavior when <Tab> is pressed
 vim.opt.pumheight = 10
 
 vim.opt.ignorecase = true

@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
         options = {
           icons_enabled = false,
           section_separators = '', component_separators = '',
-          disabled_filetypes = {'netrw'}
+          disabled_filetypes = { 'netrw' }
         }
       }
     end
@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
 
       autopairs.setup()
 
-      vim.keymap.set({'n', 'i'}, '<M-p>', -- toggle autopairs
+      vim.keymap.set({ 'n', 'i' }, '<M-p>', -- toggle autopairs
         function()
           if autopairs.state.disabled then
             autopairs.enable()
@@ -63,7 +63,7 @@ return require('packer').startup(function(use)
   use {
     'junegunn/vim-easy-align',
     config = function()
-      vim.keymap.set({'x', 'n'}, 'ga', "<Plug>(EasyAlign)")
+      vim.keymap.set({ 'x', 'n' }, 'ga', "<Plug>(EasyAlign)")
     end
   }
 
@@ -88,7 +88,7 @@ return require('packer').startup(function(use)
   use {
     'jalvesaq/Nvim-R',
     config = function()
-      vim.g.R_args = {'--no-save', '--no-restore', '--quiet'}
+      vim.g.R_args = { '--no-save', '--no-restore', '--quiet' }
       vim.g.R_esc_term = 0
       vim.g.R_rconsole_width = 0 -- always use horizontal split
       vim.g.R_assign = 0 -- don't imap _ to ->
@@ -128,9 +128,9 @@ return require('packer').startup(function(use)
         else
           return '<Tab>'
         end
-      end, {expr = true})
+      end, { expr = true })
       vim.keymap.set('s', '<Tab>', function() luasnip.jump(1) end)
-      vim.keymap.set({'i', 's'}, '<S-Tab>', function() luasnip.jump(-1) end)
+      vim.keymap.set({ 'i', 's' }, '<S-Tab>', function() luasnip.jump(-1) end)
 
       require("luasnip.loaders.from_snipmate").lazy_load()
     end
@@ -148,7 +148,7 @@ return require('packer').startup(function(use)
   use {
     'ludovicchabant/vim-gutentags',
     config = function()
-      vim.g.gutentags_exclude_project_root = {vim.env.HOME}
+      vim.g.gutentags_exclude_project_root = { vim.env.HOME }
     end
   }
 

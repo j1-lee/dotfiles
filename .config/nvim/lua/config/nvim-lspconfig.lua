@@ -1,5 +1,5 @@
 local function on_attach(_, bufnr)
-  local opts = {buffer = bufnr}
+  local opts = { buffer = bufnr }
   vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -18,8 +18,8 @@ require('lspconfig').sumneko_lua.setup {
   capabilities = capabilities,
   settings = {
     Lua = {
-      diagnostics = {globals = {'vim'}},
-      runtime = {version = 'Lua 5.1'}
+      diagnostics = { globals = { 'vim' } },
+      runtime = { version = 'Lua 5.1' }
     }
   }
 }

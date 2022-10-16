@@ -32,7 +32,7 @@ local function toggle_window(opener, closer, finder)
 end
 
 function util.toggle_vimrc()
-  toggle_window (
+  toggle_window(
     function() vim.cmd [[vsplit $MYVIMRC]] end,
     function(win) vim.api.nvim_win_close(win, false) end,
     function(buf) return vim.api.nvim_buf_get_name(buf) == vim.env.MYVIMRC end
@@ -40,7 +40,7 @@ function util.toggle_vimrc()
 end
 
 function util.toggle_quickfix()
-  toggle_window (
+  toggle_window(
     function() vim.cmd [[copen]] end,
     function() vim.cmd [[cclose]] end,
     function(buf) return vim.bo[buf].buftype == 'quickfix' end
