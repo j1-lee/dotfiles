@@ -93,6 +93,7 @@ return require('packer').startup(function(use)
       vim.g.R_rconsole_width = 0 -- always use horizontal split
       vim.g.R_assign = 0 -- don't imap _ to ->
       vim.g.r_syntax_fun_pattern = 1
+      vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
     end
   }
 
