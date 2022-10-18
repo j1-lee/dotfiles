@@ -54,4 +54,12 @@ function util.last_position_jump()
   end
 end
 
+function util.show_hlgroup()
+  local synid = vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)
+  if synid == 0 then return end
+  local synname = vim.fn.synIDattr(synid, 'name')
+  local syntrns = vim.fn.synIDattr(vim.fn.synIDtrans(synid), 'name')
+  print(synname .. ' -> ' .. syntrns)
+end
+
 return util
