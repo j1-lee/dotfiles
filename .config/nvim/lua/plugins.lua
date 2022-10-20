@@ -30,7 +30,17 @@ return require('packer').startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      local gitsigns = require 'gitsigns'
+
+      gitsigns.setup {
+        on_attach = function()
+          if vim.wo.diff then return false end
+
+          vim.keymap.set('n', '[c', gitsigns.prev_hunk, { buffer = true })
+          vim.keymap.set('n', ']c', gitsigns.next_hunk, { buffer = true })
+          vim.keymap.set('n', 'gh', gitsigns.preview_hunk, { buffer = true })
+        end
+      }
     end
   }
 
