@@ -20,8 +20,8 @@ return require('packer').startup(function(use)
       require('lualine').setup {
         options = {
           icons_enabled = false,
+          globalstatus = true,
           section_separators = '', component_separators = '',
-          disabled_filetypes = { 'netrw' }
         }
       }
     end
