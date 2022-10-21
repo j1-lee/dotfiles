@@ -1,4 +1,4 @@
-local util = require 'util' -- util/init.lua
+local util = require 'util'
 
 -- re-indenting keeps visual selection
 vim.keymap.set('x', '>', '>gv')
@@ -30,8 +30,8 @@ vim.keymap.set('n', 'x', '"_x') -- x does not use register
 
 -- toggle windows
 vim.keymap.set('n', '<Leader>f', "<Cmd>Lexplore!<CR>")
-vim.keymap.set('n', '<Leader>c', util.toggle_vimrc)
-vim.keymap.set('n', '<Leader>q', util.toggle_quickfix)
+vim.keymap.set('n', '<Leader>c', util.toggle.vimrc)
+vim.keymap.set('n', '<Leader>q', util.toggle.quickfix)
 
 -- autocorrect last spell error
 vim.keymap.set('i', '<C-s>', "<C-g>u<Esc>[S1z=`]a<C-g>u")

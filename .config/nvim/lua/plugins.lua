@@ -1,166 +1,47 @@
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
+
+  local config = require 'config'
 
   use 'wbthomason/packer.nvim'
 
   -- colorscheme
 
-  use {
-    'rebelot/kanagawa.nvim',
-    config = function()
-      vim.opt.termguicolors = true
-      vim.cmd [[colorscheme kanagawa]]
-    end
-  }
+  use { 'rebelot/kanagawa.nvim', config = config.kanagawa }
 
   -- status (or the like)
 
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      require('lualine').setup {
-        options = {
-          icons_enabled = false,
-          globalstatus = true,
-          section_separators = '', component_separators = '',
-        }
-      }
-    end
-  }
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      local gitsigns = require 'gitsigns'
-
-      gitsigns.setup {
-        on_attach = function()
-          if vim.wo.diff then return false end
-
-          vim.keymap.set('n', '[c', gitsigns.prev_hunk, { buffer = true })
-          vim.keymap.set('n', ']c', gitsigns.next_hunk, { buffer = true })
-          vim.keymap.set('n', 'gh', gitsigns.preview_hunk, { buffer = true })
-        end
-      }
-    end
-  }
+  use { 'nvim-lualine/lualine.nvim', config = config.lualine }
+  use { 'lewis6991/gitsigns.nvim', config = config.gitsigns }
 
   -- editing
 
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
-
-  use {
-    'windwp/nvim-autopairs',
-    config = function()
-      local autopairs = require 'nvim-autopairs'
-
-      autopairs.setup()
-
-      vim.keymap.set({ 'n', 'i' }, '<M-p>', -- toggle autopairs
-        function()
-          if autopairs.state.disabled then
-            autopairs.enable()
-            print("Autopairs on")
-          else
-            autopairs.disable()
-            print("Autopairs off")
-          end
-        end
-      )
-    end
-  }
-
-  use {
-    'junegunn/vim-easy-align',
-    config = function()
-      vim.keymap.set({ 'x', 'n' }, 'ga', "<Plug>(EasyAlign)")
-    end
-  }
+  use { 'windwp/nvim-autopairs', config = config.autopairs }
+  use { 'junegunn/vim-easy-align', config = config.easy_align }
 
   -- filetypes
 
-  use {
-    'lervag/vimtex',
-    config = function()
-      vim.g.vimtex_quickfix_mode = 0 -- don't open quickfix automatically
-    end
-  }
-
-  use {
-    'j1-lee/vim-maki',
-    config = function()
-      vim.g.maki_root = '$HOME/Sync/wiki'
-      vim.g.maki_export = '$HOME/Sync/wiki/export'
-      vim.g.maki_auto_export = 1
-    end
-  }
-
-  use {
-    'jalvesaq/Nvim-R',
-    config = function()
-      vim.g.R_args = { '--no-save', '--no-restore', '--quiet' }
-      vim.g.R_esc_term = 0
-      vim.g.R_rconsole_width = 0 -- always use horizontal split
-      vim.g.R_assign = 0 -- don't imap _ to ->
-      vim.g.r_syntax_fun_pattern = 1
-      vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
-    end
-  }
+  use 'lervag/vimtex'
+  use { 'j1-lee/vim-maki', config = config.maki }
+  use { 'jalvesaq/Nvim-R', config = config.r }
 
   -- LSP, completion, and snippet
 
+  use { 'neovim/nvim-lspconfig', config = config.lspconfig }
   use {
-    'neovim/nvim-lspconfig',
-    config = function()
-      require 'config.nvim-lspconfig' -- config/nvim-lspconfig.lua
-    end
+    'hrsh7th/nvim-cmp', config = config.cmp,
+    requires = { -- completion sources
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-omni',
+    }
   }
-
-  use {
-    'hrsh7th/nvim-cmp',
-    config = function()
-      require 'config.nvim-cmp' -- config/nvim-cmp.lua
-    end
-  }
-
-  use {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      local luasnip = require 'luasnip'
-
-      luasnip.config.setup {
-        region_check_events = 'InsertEnter',
-        store_selection_keys = '<Tab>',
-      }
-
-      vim.keymap.set('i', '<Tab>', function()
-        if luasnip.expand_or_jumpable() then
-          return '<Plug>luasnip-expand-or-jump'
-        else
-          return '<Tab>'
-        end
-      end, { expr = true })
-      vim.keymap.set('s', '<Tab>', function() luasnip.jump(1) end)
-      vim.keymap.set({ 'i', 's' }, '<S-Tab>', function() luasnip.jump(-1) end)
-
-      require("luasnip.loaders.from_snipmate").lazy_load()
-    end
-  }
-
-  -- nvim-cmp sources
-
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-omni'
+  use { 'L3MON4D3/LuaSnip', config = config.luasnip }
 
   -- others
 
-  use {
-    'ludovicchabant/vim-gutentags',
-    config = function()
-      vim.g.gutentags_exclude_project_root = { vim.env.HOME }
-    end
-  }
+  use { 'ludovicchabant/vim-gutentags', config = config.gutentags }
 
 end)
