@@ -1,15 +1,15 @@
-vim.opt_local.colorcolumn = {73, 74}
+vim.opt_local.colorcolumn = { 73, 74 }
 
 local types = {
-  {'feat',     "A new feature"},
-  {'fix',      "A bug fix"},
-  {'docs',     "Documentation only changes"},
-  {'style',    "Changes that do not affect the meaning of the code"},
-  {'refactor', "A code change that neither fixes a bug nor adds a feature"},
-  {'perf',     "A code change that improves performance"},
-  {'test',     "Adding missing tests or correcting existing tests"},
-  {'chore',    "Other changes that do not modify src or test files"},
-  {'revert',   "Reverts a previous commit"},
+  { 'feat',     "A new feature" },
+  { 'fix',      "A bug fix" },
+  { 'docs',     "Documentation only changes" },
+  { 'style',    "Changes that do not affect the meaning of the code" },
+  { 'refactor', "A code change that neither fixes a bug nor adds a feature" },
+  { 'perf',     "A code change that improves performance" },
+  { 'test',     "Adding missing tests or correcting existing tests" },
+  { 'chore',    "Other changes that do not modify src or test files" },
+  { 'revert',   "Reverts a previous commit" },
 }
 
 local function select_type()
@@ -21,7 +21,8 @@ local function select_type()
     if choice then
       vim.fn.setline('.', choice[1] .. ': ')
     end
-    vim.cmd [[let v:char = 1 | startinsert!]]
+    vim.v.char = 1
+    vim.cmd.startinsert { bang = true }
   end)
 end
 
