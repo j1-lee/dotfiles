@@ -27,7 +27,10 @@ local function select_type()
 end
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
-  command = [[call cursor(1, 0) | startinsert!]],
+  callback = function()
+    vim.fn.cursor(1, 0)
+    vim.cmd.startinsert { bang = true }
+  end,
   buffer = 0
 })
 

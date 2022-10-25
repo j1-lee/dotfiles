@@ -1,5 +1,5 @@
 vim.opt_local.spell = true
-vim.opt_local.spelllang:append {'es', 'cjk'}
+vim.opt_local.spelllang:append { 'es', 'cjk' }
 
 local function add_tilde()
   local line = vim.fn.getline('.')
@@ -11,4 +11,4 @@ local function add_tilde()
   vim.fn.setline('.', line)
 end
 
-vim.keymap.set('n', '_', add_tilde, {buffer = 0})
+vim.keymap.set('n', '_', add_tilde, { buffer = true })
