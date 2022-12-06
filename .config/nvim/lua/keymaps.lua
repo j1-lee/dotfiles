@@ -32,6 +32,7 @@ vim.keymap.set('n', 'x', '"_x') -- x does not use register
 vim.keymap.set('n', '<Leader>f', "<Cmd>Lexplore!<CR>")
 vim.keymap.set('n', '<Leader>c', util.toggle.vimrc)
 vim.keymap.set('n', '<Leader>q', util.toggle.quickfix)
+vim.keymap.set('n', '<Leader>r', util.toggle.mru)
 
 -- autocorrect last spell error
 vim.keymap.set('i', '<C-s>', "<C-g>u<Esc>[S1z=`]a<C-g>u")

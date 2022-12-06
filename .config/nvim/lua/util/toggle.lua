@@ -30,4 +30,13 @@ function toggle.quickfix()
   )
 end
 
+function toggle.mru()
+  local mru = require 'util.mru'
+  toggle_window(
+    function() vim.cmd "10 split"; mru.show() end,
+    function(win) vim.api.nvim_win_close(win, false) end,
+    mru.is_mru
+  )
+end
+
 return toggle
