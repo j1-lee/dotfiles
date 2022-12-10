@@ -1,21 +1,19 @@
 local mru = {}
 
 local function get_entries()
-  local files = {}
+  local i, files, lines = 0, {}, {}
+
   for _, file in ipairs(vim.v.oldfiles) do
     if
       vim.startswith(file, '/home/') and
       not vim.endswith(file, 'COMMIT_EDITMSG') and
       vim.fn.filereadable(file) == 1
     then
-      files[#files+1] = file
+      i = i + 1
+      files[i] = file
+      lines[i] = (i % 10) .. ': ' .. vim.fn.fnamemodify(file, ':~')
+      if i == 10 then break end
     end
-    if #files == 10 then break end
-  end
-
-  local lines = {}
-  for i, file in ipairs(files) do
-    lines[#lines+1] = (i % 10) .. ': ' .. vim.fn.fnamemodify(file, ':~')
   end
 
   return files, lines
