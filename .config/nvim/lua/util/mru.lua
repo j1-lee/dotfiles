@@ -11,8 +11,8 @@ local function get_entries()
     then
       i = i + 1
       files[i] = file
-      lines[i] = (i % 10) .. ': ' .. vim.fn.fnamemodify(file, ':~')
-      if i == 10 then break end
+      lines[i] = i .. ': ' .. vim.fn.fnamemodify(file, ':~')
+      if i == 9 then break end
     end
   end
 
@@ -25,40 +25,40 @@ local function create_buffer()
   local files, lines = get_entries()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
-  vim.b[buf].mru = true
-  vim.bo[buf].modifiable = false
+  local id = vim.api.nvim_create_namespace('mru')
+  local function highlight(...) vim.api.nvim_buf_add_highlight(buf, id, ...) end
 
-  local id = 0
-  local highlight = vim.api.nvim_buf_add_highlight
   for i = 1, #files do
     local basename_start = lines[i]:len() - vim.fs.basename(files[i]):len()
-    id = highlight(buf, id, 'Directory', i - 1, 2, basename_start)
-    id = highlight(buf, id, 'Identifier', i - 1, basename_start, -1)
+    highlight('Directory', i - 1, 2, basename_start)
+    highlight('Identifier', i - 1, basename_start, -1)
   end
 
   local function open(num)
     num = num or vim.fn.line('.')
-    if num == 0 then num = 10 end
     if num > #files then return end
     pcall(vim.cmd.close)
     pcall(vim.cmd.edit, files[num])
   end
 
-  for i = 0, #files-1 do
+  for i = 1, #files do
     vim.keymap.set('n', tostring(i), function() open(i) end, { buffer = buf })
   end
   vim.keymap.set('n', '<CR>', open, { buffer = buf })
   vim.keymap.set('n', 'q', vim.cmd.quit, { buffer = buf })
 
-  local augroup = vim.api.nvim_create_augroup('mru', { clear = true })
+  vim.b[buf].mru = true
+  vim.bo[buf].modifiable = false
+
   vim.api.nvim_create_autocmd('BufWinEnter', {
     callback = function()
       vim.opt_local.winfixheight = true
       vim.opt_local.wrap = false
       vim.opt_local.number = false
       vim.opt_local.relativenumber = false
+      vim.opt_local.cursorline = true
     end,
-    buffer = buf, group = augroup
+    buffer = buf, group = vim.api.nvim_create_augroup('mru', { clear = true })
   })
 
   return buf
@@ -70,10 +70,7 @@ end
 
 function mru.show()
   local buf
-  for i = 1, vim.fn.bufnr('$') do
-    if mru.is_mru(i) then buf = i break end
-  end
-
+  for i = 1, vim.fn.bufnr('$') do if mru.is_mru(i) then buf = i break end end
   vim.cmd.buffer(buf or create_buffer())
 end
 

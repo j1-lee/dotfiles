@@ -32,7 +32,7 @@ function toggle.mru()
   local mru = require 'util.mru'
   toggle_window(
     mru.is_mru,
-    function() vim.cmd "10 split"; mru.show() end
+    function() vim.cmd "9 split"; mru.show() end
   )
 end
 
