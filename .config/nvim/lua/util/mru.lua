@@ -70,7 +70,9 @@ end
 
 function mru.show()
   local buf
-  for i = 1, vim.fn.bufnr('$') do if mru.is_mru(i) then buf = i break end end
+  for _, b in ipairs(vim.api.nvim_list_bufs()) do
+    if mru.is_mru(b) then buf = b break end
+  end
   vim.cmd.buffer(buf or create_buffer())
 end
 
