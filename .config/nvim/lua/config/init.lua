@@ -29,6 +29,10 @@ function config.gitsigns()
   }
 end
 
+function config.surround()
+  require('nvim-surround').setup()
+end
+
 function config.autopairs()
   local autopairs = require 'nvim-autopairs'
 

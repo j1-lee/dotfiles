@@ -16,7 +16,7 @@ require('packer').startup(function(use)
   -- editing
 
   use 'tpope/vim-commentary'
-  use 'tpope/vim-surround'
+  use { 'kylechui/nvim-surround', config = config.surround }
   use { 'windwp/nvim-autopairs', config = config.autopairs }
   use { 'junegunn/vim-easy-align', config = config.easy_align }
 
