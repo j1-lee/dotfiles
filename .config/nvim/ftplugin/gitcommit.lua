@@ -12,33 +12,17 @@ local types = {
   { 'revert',   "Reverts a previous commit" },
 }
 
-local function select_type()
+local function insert_type()
   vim.ui.select(types, {
     format_item = function(item)
-      return string.format('%-8s %s', unpack(item))
+      return string.format('%-8s %s', item[1], item[2])
     end
   }, function(choice)
     if choice then
-      vim.fn.setline('.', choice[1] .. ': ')
+      vim.fn.append(0, choice[1] .. ': ')
+      vim.fn.cursor(1, vim.fn.getline(1):len())
     end
-    vim.v.char = 1
-    vim.cmd.startinsert { bang = true }
   end)
 end
 
-vim.api.nvim_create_autocmd('BufWinEnter', {
-  callback = function()
-    vim.fn.cursor(1, 0)
-    vim.cmd.startinsert { bang = true }
-  end,
-  buffer = 0
-})
-
-vim.api.nvim_create_autocmd('InsertEnter', {
-  callback = function()
-    if vim.fn.line('.') == 1 and vim.fn.getline('.') == "" then
-      select_type()
-    end
-  end,
-  buffer = 0
-})
+vim.keymap.set('n', '<Leader><Leader>', insert_type)
