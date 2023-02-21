@@ -63,7 +63,35 @@ snippet newbeamer
 	\\end{document}
 
 snippet axis
-  \\draw[help lines, dashed] (0, 0) grid (${1:6}, ${2:6});
-  \\draw[->, thick] (0, 0) -- ($1, 0) node[below] {$x$};
-  \\draw[->, thick] (0, 0) -- (0, $2) node[left] {$y$};
+	\\draw[help lines, dashed] (0, 0) grid (${1:6}, ${2:6});
+	\\draw[->, thick] (0, 0) -- ($1, 0) node[below] {$x$};
+	\\draw[->, thick] (0, 0) -- (0, $2) node[left] {$y$};
 	\\node[below left] at (0, 0) {$O$};
+
+snippet letters
+	\def\aa{\mathcal{A}} \def\AA{\mathbb{A}}
+	\def\bb{\mathcal{B}} \def\BB{\mathbb{B}}
+	\def\cc{\mathcal{C}} \def\CC{\mathbb{C}}
+	\def\dd{\mathcal{D}} \def\DD{\mathbb{D}}
+	\def\ee{\mathcal{E}} \def\EE{\mathbb{E}}
+	\def\ff{\mathcal{F}} \def\FF{\mathbb{F}}
+	\def\gg{\mathcal{G}} \def\GG{\mathbb{G}}
+	\def\hh{\mathcal{H}} \def\HH{\mathbb{H}}
+	\def\ii{\mathcal{I}} \def\II{\mathbb{I}}
+	\def\jj{\mathcal{J}} \def\JJ{\mathbb{J}}
+	\def\kk{\mathcal{K}} \def\KK{\mathbb{K}}
+	\def\ll{\mathcal{L}} \def\LL{\mathbb{L}}
+	\def\mm{\mathcal{M}} \def\MM{\mathbb{M}}
+	\def\nn{\mathcal{N}} \def\NN{\mathbb{N}}
+	\def\oo{\mathcal{O}} \def\OO{\mathbb{O}}
+	\def\pp{\mathcal{P}} \def\PP{\mathbb{P}}
+	\def\qq{\mathcal{Q}} \def\QQ{\mathbb{Q}}
+	\def\rr{\mathcal{R}} \def\RR{\mathbb{R}}
+	\def\ss{\mathcal{S}} \def\SS{\mathbb{S}}
+	\def\tt{\mathcal{T}} \def\TT{\mathbb{T}}
+	\def\uu{\mathcal{U}} \def\UU{\mathbb{U}}
+	\def\vv{\mathcal{V}} \def\VV{\mathbb{V}}
+	\def\ww{\mathcal{W}} \def\WW{\mathbb{W}}
+	\def\xx{\mathcal{X}} \def\XX{\mathbb{X}}
+	\def\yy{\mathcal{Y}} \def\YY{\mathbb{Y}}
+	\def\zz{\mathcal{Z}} \def\ZZ{\mathbb{Z}}
