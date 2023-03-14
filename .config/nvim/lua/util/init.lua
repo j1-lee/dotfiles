@@ -24,6 +24,15 @@ function util.show_hlgroup()
   print(synname .. ' -> ' .. syntrns)
 end
 
+function util.open_terminal(command, append_filename)
+  command = command or "bash"
+  if append_filename then
+    command = command .. " " .. vim.fn.shellescape(vim.fn.expand '%')
+  end
+  vim.cmd.split("term://" .. command)
+  vim.cmd.startinsert()
+end
+
 util.toggle = require 'util.toggle'
 
 return util

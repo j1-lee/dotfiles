@@ -38,8 +38,7 @@ vim.keymap.set('n', '<Leader>r', util.toggle.mru)
 vim.keymap.set('i', '<C-s>', "<C-g>u<Esc>[S1z=`]a<C-g>u")
 vim.keymap.set('n', '<C-s>', "[S1z=")
 
--- show highlight group at current position
-vim.keymap.set('n', '<F10>', util.show_hlgroup)
-
--- remove trailing whitespaces
-vim.keymap.set('n', '<F12>', util.remove_trailing_spaces)
+-- function keys
+vim.keymap.set('n', '<F4>', util.open_terminal) -- open terminal
+vim.keymap.set('n', '<F10>', util.show_hlgroup) -- show highlight group
+vim.keymap.set('n', '<F12>', util.remove_trailing_spaces) -- trim from right

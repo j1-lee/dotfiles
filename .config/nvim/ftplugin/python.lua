@@ -1,5 +1,6 @@
-vim.keymap.set('n', '<F5>', function()
-  local filename = vim.fn.shellescape(vim.fn.expand '%')
-  vim.cmd.split(string.format("term://python %s", filename))
-  vim.cmd.startinsert()
-end, { buffer = true })
+local open_terminal = require('util').open_terminal
+local run_python = function() open_terminal("python", true) end
+local run_python_i = function() open_terminal("python -i", true) end
+
+vim.keymap.set('n', '<F5>', run_python, { buffer = true })
+vim.keymap.set('n', '<F6>', run_python_i, { buffer = true })
