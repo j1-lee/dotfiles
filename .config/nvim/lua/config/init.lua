@@ -2,6 +2,11 @@ local config = {}
 
 function config.kanagawa()
   vim.opt.termguicolors = true
+  require('kanagawa').setup {
+    overrides = function(colors)
+      return { CursorLine = { bg = colors.theme.ui.bg_p1 } }
+    end
+  }
   vim.cmd.colorscheme 'kanagawa'
 end
 
@@ -21,7 +26,6 @@ function config.gitsigns()
   gitsigns.setup {
     on_attach = function()
       if vim.wo.diff then return false end
-
       vim.keymap.set('n', '[c', gitsigns.prev_hunk, { buffer = true })
       vim.keymap.set('n', ']c', gitsigns.next_hunk, { buffer = true })
       vim.keymap.set('n', 'gh', gitsigns.preview_hunk, { buffer = true })
