@@ -40,5 +40,5 @@ vim.keymap.set('n', '<C-s>', "[S1z=")
 
 -- function keys
 vim.keymap.set('n', '<F4>', util.open_terminal) -- open terminal
-vim.keymap.set('n', '<F10>', util.show_hlgroup) -- show highlight group
+vim.keymap.set('n', '<F10>', vim.show_pos)
 vim.keymap.set('n', '<F12>', util.remove_trailing_spaces) -- trim from right
