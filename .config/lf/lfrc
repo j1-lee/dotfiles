@@ -44,6 +44,7 @@ cmd open-with %"$@" "$fx"
 # redefine existing commands
 cmd open ${{
   case "$(file --mime-type --brief --dereference "${fx%%$IFS*}")" in
+    text/html) for f in $fx; do xdg-open "$f" >/dev/null 2>&1 & done;;
     text/*|inode/x-empty) vim $fx;;
     audio/*|video/*) mpv --no-audio-display $fx;;
     image/*) eom $fx >/dev/null 2>&1 &;;
