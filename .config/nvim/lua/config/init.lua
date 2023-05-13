@@ -72,6 +72,13 @@ function config.r()
   vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
 end
 
+function config.treesitter()
+  require('nvim-treesitter.configs').setup {
+    auto_install = true,
+    highlight = { enable = true, disable = { 'latex' } }
+  }
+end
+
 function config.lspconfig()
   local lspconfig = require 'lspconfig'
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
