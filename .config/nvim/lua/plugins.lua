@@ -38,5 +38,9 @@ require('packer').startup(function(use)
 
   -- others
   use { 'ludovicchabant/vim-gutentags', config = config.gutentags }
+  use {
+    'nvim-telescope/telescope.nvim', config = config.telescope,
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
 
 end)

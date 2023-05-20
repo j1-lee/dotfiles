@@ -68,6 +68,7 @@ function config.r()
   vim.g.R_esc_term = 0
   vim.g.R_rconsole_width = 0 -- always use horizontal split
   vim.g.R_assign = 0 -- don't imap _ to ->
+  vim.g.R_disable_cmds = { 'RSendFunction' } -- conflicts with telescope \ff
   vim.g.r_syntax_fun_pattern = 1
   vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
 end
@@ -159,6 +160,58 @@ end
 
 function config.gutentags()
   vim.g.gutentags_exclude_project_root = { vim.env.HOME }
+end
+
+function config.telescope()
+  local builtin = require 'telescope.builtin'
+  local actions = require 'telescope.actions'
+
+  require('telescope').setup {
+    defaults = {
+      layout_config = { prompt_position = 'top' },
+      sorting_strategy = 'ascending',
+      path_display = { 'truncate' } ,
+      mappings = {
+        i = {
+          ['<C_k>'] = actions.cycle_history_prev,
+          ['<C_j>'] = actions.cycle_history_next,
+        }
+      }
+    }
+  }
+
+  local function get_git_root()
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    if vim.v.shell_error ~= 0 then return end
+    local dot_git_path = vim.fn.finddir('.git', '.;')
+    return vim.fn.fnamemodify(dot_git_path, ':h')
+  end
+
+  local function git_or_shallow(picker)
+    return function()
+      local git_root = get_git_root()
+
+      if git_root then picker { cwd = git_root } return end
+
+      local cwd = require('telescope.utils').buffer_dir()
+
+      if picker == builtin.find_files then
+        picker {
+          cwd = cwd,
+          find_command = { 'rg', '--files', '--color=never', '--max-depth=1' },
+        }
+      else
+        picker {
+          cwd = cwd,
+          additional_args = { '--max-depth=1' },
+        }
+      end
+    end
+  end
+
+  vim.keymap.set('n', '<Leader>ff', git_or_shallow(builtin.find_files))
+  vim.keymap.set('n', '<Leader>fg', git_or_shallow(builtin.live_grep))
+  vim.keymap.set('x', '<Leader>fg', git_or_shallow(builtin.grep_string))
 end
 
 return config
