@@ -34,6 +34,10 @@ vim.keymap.set('n', '<Leader>c', util.toggle.vimrc)
 vim.keymap.set('n', '<Leader>q', util.toggle.quickfix)
 vim.keymap.set('n', '<Leader>r', util.toggle.mru)
 
+-- jump quickfix
+vim.keymap.set('n', '[q', "<Cmd>cprev<CR>")
+vim.keymap.set('n', ']q', "<Cmd>cnext<CR>")
+
 -- autocorrect last spell error
 vim.keymap.set('i', '<C-s>', "<C-g>u<Esc>[S1z=`]a<C-g>u")
 vim.keymap.set('n', '<C-s>', "[S1z=")
