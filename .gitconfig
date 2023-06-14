@@ -1,0 +1,23 @@
+[include]
+  path = .gitconfig-user
+
+[init]
+  defaultBranch = main
+
+[status]
+  showUntrackedFiles = no
+
+[alias]
+  st = status --short --branch
+  df = diff
+  sw = switch
+  au = add --update
+  ci = commit
+  ll = log --oneline
+  lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%as)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+
+[diff]
+  tool = nvimdiff
+
+[merge]
+  tool = nvimdiff
