@@ -171,12 +171,6 @@ function config.telescope()
       layout_config = { prompt_position = 'top' },
       sorting_strategy = 'ascending',
       path_display = { 'truncate' } ,
-      mappings = {
-        i = {
-          ['<C_k>'] = actions.cycle_history_prev,
-          ['<C_j>'] = actions.cycle_history_next,
-        }
-      }
     }
   }
 
@@ -209,9 +203,9 @@ function config.telescope()
     end
   end
 
-  vim.keymap.set('n', '<Leader>ff', git_or_shallow(builtin.find_files))
-  vim.keymap.set('n', '<Leader>fg', git_or_shallow(builtin.live_grep))
-  vim.keymap.set('x', '<Leader>fg', git_or_shallow(builtin.grep_string))
+  vim.keymap.set('n', '<Leader>sf', git_or_shallow(builtin.find_files))
+  vim.keymap.set('n', '<Leader>sg', git_or_shallow(builtin.live_grep))
+  vim.keymap.set('x', '<Leader>sg', git_or_shallow(builtin.grep_string))
 end
 
 return config
