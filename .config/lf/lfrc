@@ -1,26 +1,30 @@
-# settings
+# options
 set incsearch
 set scrolloff 3
 set ratios 1:1
 set info size
 set previewer ~/.config/lf/pv.sh
-set relativenumber on
+set relativenumber
 
-# shell-related settings
+# shell options
 set shell sh
 set ifs "\n"
-set shellopts -eu # safer shell cmds; -e: exit on error, -u: error on unset vars
+set shellopts -eu # -e: exit on error, -u: error on unset vars
 
-# custom maps
+# keymaps
 map gd cd ~/Downloads
 map gw cd ~/Workspace
 map gs cd ~/Sync
 map gm cd /media
 map D trash
 
-# custom commands
-# bulk rename (https://github.com/gokcehan/lf/wiki/Tips)
-cmd bulk-rename ${{
+# commands
+cmd open-with $"$@" $fx
+cmd trash $gio trash $fx # trash
+cmd j $lf -remote "send $id cd '$(autojump $1)'" # autojump
+cmd on-cd &printf "\033]0;$PWD\007" >/dev/tty # set terminal title
+
+cmd bulk-rename ${{ # https://github.com/gokcehan/lf/wiki/Tips
   old=$(mktemp)
   new=$(mktemp)
   printf "$fx\n" > $old
@@ -38,27 +42,17 @@ cmd bulk-rename ${{
   rm $old $new
   lf -remote "send $id unselect"
 }}
-# open-with
-cmd open-with %"$@" "$fx"
 
-# redefine existing commands
 cmd open ${{
   case "$(file --mime-type --brief --dereference "${fx%%$IFS*}")" in
-    text/html) for f in $fx; do xdg-open "$f" >/dev/null 2>&1 & done;;
     text/*|inode/x-empty) vim $fx;;
     audio/*|video/*) mpv --no-audio-display $fx;;
     image/*) eom $fx >/dev/null 2>&1 &;;
     *) for f in $fx; do xdg-open "$f" >/dev/null 2>&1 & done;;
   esac
 }}
-# on-cd; set terminal title to pwd
-cmd on-cd &printf "\033]0;$PWD\007" >/dev/tty
-
-# external tools
-cmd trash %set -f; gio trash $fx # trash
-cmd j %lf -remote "send $id cd '$(autojump $1)'" # autojump
 
 # startup
-on-cd # set terminal title
+on-cd
 
 # vim: colorcolumn=81,82
