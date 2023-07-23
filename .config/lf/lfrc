@@ -4,7 +4,7 @@ set scrolloff 3
 set ratios 1:1
 set info size
 set previewer ~/.config/lf/pv.sh
-set relativenumber
+set number
 
 # shell options
 set shell sh

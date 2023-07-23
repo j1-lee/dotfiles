@@ -7,13 +7,11 @@ vim.opt.tabstop = 2 -- # of visual spaces per tab
 vim.opt.softtabstop = 2 -- # of spaces in tab when editing
 vim.opt.shiftwidth = 2 -- # of spaces for indentation (when using >>)
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-
 vim.opt.cursorline = true
 vim.opt.scrolloff = 3 -- keep cursor away from screen border
 vim.opt.whichwrap:append 'h,l' -- h and l move between lines
 
+vim.opt.number = true
 vim.opt.lazyredraw = true -- redraw only when necessary
 vim.opt.showmode = false -- don't need -- INSERT --
 vim.opt.title = true -- change title of terminal
