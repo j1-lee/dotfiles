@@ -29,6 +29,8 @@ function config.gitsigns()
       vim.keymap.set('n', '[c', gitsigns.prev_hunk, { buffer = true })
       vim.keymap.set('n', ']c', gitsigns.next_hunk, { buffer = true })
       vim.keymap.set('n', 'gh', gitsigns.preview_hunk, { buffer = true })
+      vim.keymap.set('n', 'gs', gitsigns.stage_hunk, { buffer = true })
+      vim.keymap.set('n', 'gr', gitsigns.reset_hunk, { buffer = true })
     end
   }
 end
@@ -164,7 +166,6 @@ end
 
 function config.telescope()
   local builtin = require 'telescope.builtin'
-  local actions = require 'telescope.actions'
 
   require('telescope').setup {
     defaults = {
@@ -205,7 +206,6 @@ function config.telescope()
 
   vim.keymap.set('n', '<Leader>sf', git_or_shallow(builtin.find_files))
   vim.keymap.set('n', '<Leader>sg', git_or_shallow(builtin.live_grep))
-  vim.keymap.set('x', '<Leader>sg', git_or_shallow(builtin.grep_string))
 end
 
 return config
