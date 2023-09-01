@@ -42,13 +42,15 @@ snippet newarticle
 	\\end{document}
 
 snippet newbeamer
-	\\documentclass{beamer}
+	\\documentclass[aspectratio=169]{beamer}
 
 	\\title{$1}
 	\\author{Jaewon Lee}
 	\\date{\\today}
 
 	\\usetheme{Frankfurt}
+	\\setbeamertemplate{footline}[page number]
+	\\beamertemplatenavigationsymbolsempty
 
 	\\begin{document}
 
