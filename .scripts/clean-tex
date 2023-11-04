@@ -3,7 +3,21 @@
 import os, subprocess
 from itertools import chain
 
-exts = ['aux', 'bbl', 'blg', 'fdb_latexmk', 'fls', 'log', 'nav', 'out', 'snm', 'synctex(busy)', 'synctex.gz', 'toc']
+exts = [
+    'aux',
+    'bbl',
+    'blg',
+    'fdb_latexmk',
+    'fls',
+    'log',
+    'nav',
+    'out',
+    'snm',
+    'synctex(busy)',
+    'synctex.gz',
+    'toc',
+    'xdv',
+]
 
 def auxfiles(file):
     base, ext = file[:-4], file[-4:]
