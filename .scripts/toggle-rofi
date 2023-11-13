@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+dir="/org/mate/desktop/keybindings/custom0/"
+
+function read () { dconf read "$dir$1"; }
+function write () { dconf write "$dir$1" "$2"; }
+
+case "$(read name)" in
+  "")
+    write name    "'Rofi'"
+    write binding "'<Primary>space'"
+    write action  "'rofi -show drun -no-lazy-grab'"
+  ;;
+
+  "'Rofi'")
+    if [[ "$(read binding)" == "'disabled'" ]]; then
+      write binding "'<Primary>space'"
+    else
+      write binding "'disabled'"
+    fi
+  ;;
+esac
