@@ -17,6 +17,7 @@ map gw cd ~/Workspace
 map gs cd ~/Sync
 map gm cd /media
 map D trash
+map A :rename; cmd-end
 
 # commands
 cmd open-with $"$@" $fx
