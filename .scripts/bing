@@ -41,7 +41,7 @@ do
   then
     echo "Downloading: $date"
     download "${url/#/http://www.bing.com}" "$outfile"
-    echo "$date; $title; $copyright" >> "$historyfile"
+    echo "$date;$title;$copyright" >> "$historyfile"
 
     if ((i == 0)) # for today's bing image...
     then
