@@ -9,5 +9,5 @@ read -d '' file < <(
   )
 if [[ -n $file ]]; then
   echo "$file"
-  xdg-open "$file" 2>/dev/null
+  xdg-open "$file" 2>/dev/null &
 fi
