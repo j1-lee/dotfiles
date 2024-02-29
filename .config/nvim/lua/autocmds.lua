@@ -15,6 +15,11 @@ autocmd('FileType', {
   callback = function() vim.opt_local.colorcolumn = { 81, 82 } end
 })
 
+autocmd('FileType', {
+  pattern = { 'tex', 'wiki' },
+  callback = function() vim.opt_local.linebreak = true end
+})
+
 autocmd('WinEnter', { callback = function() vim.opt.cursorline = true end })
 autocmd('WinLeave', { callback = function() vim.opt.cursorline = false end })
 
