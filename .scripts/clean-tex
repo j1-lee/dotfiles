@@ -17,6 +17,8 @@ exts = [
     'synctex.gz',
     'toc',
     'xdv',
+    'lot',
+    'lof',
 ]
 
 def auxfiles(file):
