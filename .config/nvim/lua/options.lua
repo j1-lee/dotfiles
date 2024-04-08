@@ -9,7 +9,6 @@ vim.opt.shiftwidth = 2 -- # of spaces for indentation (when using >>)
 
 vim.opt.cursorline = true
 vim.opt.scrolloff = 3 -- keep cursor away from screen border
-vim.opt.whichwrap:append 'h,l' -- h and l move between lines
 
 vim.opt.number = true
 vim.opt.lazyredraw = true -- redraw only when necessary
