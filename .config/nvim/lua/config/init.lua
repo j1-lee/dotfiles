@@ -78,7 +78,13 @@ end
 function config.treesitter()
   require('nvim-treesitter.configs').setup {
     auto_install = true,
-    highlight = { enable = true, disable = { 'latex' } }
+    highlight = {
+      enable = true,
+      disable = function(lang, bufnr)
+        if lang == 'latex' then return true end
+        return vim.api.nvim_buf_line_count(bufnr) > 9999
+      end
+    }
   }
 end
 
