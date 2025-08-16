@@ -20,7 +20,7 @@ require('packer').startup(function(use)
   -- filetypes
   use 'lervag/vimtex'
   use { 'j1-lee/vim-maki', config = config.maki }
-  use { 'jalvesaq/Nvim-R', config = config.r }
+  use { 'R-nvim/R.nvim', config = config.r }
   use { 'nvim-treesitter/nvim-treesitter', config = config.treesitter }
 
   -- LSP, completion, and snippet

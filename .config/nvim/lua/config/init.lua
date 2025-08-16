@@ -66,12 +66,15 @@ function config.maki()
 end
 
 function config.r()
-  vim.g.R_args = { '--no-save', '--no-restore', '--quiet' }
-  vim.g.R_esc_term = 0
-  vim.g.R_rconsole_width = 0 -- always use horizontal split
-  vim.g.R_assign = 0 -- don't imap _ to ->
-  vim.g.R_disable_cmds = { 'RSendFunction' } -- conflicts with telescope \ff
-  vim.g.r_syntax_fun_pattern = 1
+  require('r').setup {
+    hook = {
+      on_filetype = function() vim.opt_local.colorcolumn = { 121, 122 } end
+    },
+    R_args = { '--no-save', '--no-restore', '--quiet' },
+    esc_term = false,
+    rconsole_width = 0, -- always use horizontal split
+    nvimpager = "split_v",
+  }
   vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
 end
 
