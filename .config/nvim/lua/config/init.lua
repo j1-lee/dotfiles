@@ -74,6 +74,7 @@ function config.r()
     esc_term = false,
     rconsole_width = 0, -- always use horizontal split
     nvimpager = "split_v",
+    setwd = "file",
   }
   vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
 end
