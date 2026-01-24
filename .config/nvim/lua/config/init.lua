@@ -93,7 +93,6 @@ function config.treesitter()
 end
 
 function config.lspconfig()
-  local lspconfig = require 'lspconfig'
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   local function on_attach(_, bufnr)
@@ -104,21 +103,23 @@ function config.lspconfig()
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   end
 
-  lspconfig.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
+  local lsps = {
+    pyright = { on_attach = on_attach, capabilities = capabilities },
+    lua_ls = {
+      on_attach = on_attach, capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = { globals = { 'vim' } },
+          runtime = { version = 'Lua 5.1' },
+        }
+      }
+    },
   }
 
-  lspconfig.lua_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        diagnostics = { globals = { 'vim' } },
-        runtime = { version = 'Lua 5.1' }
-      }
-    }
-  }
+  for name, cfg in pairs(lsps) do
+    vim.lsp.enable(name)
+    vim.lsp.config(name, cfg)
+  end
 end
 
 function config.cmp()
