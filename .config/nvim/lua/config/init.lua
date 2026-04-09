@@ -35,10 +35,6 @@ function config.gitsigns()
   }
 end
 
-function config.surround()
-  require('nvim-surround').setup()
-end
-
 function config.autopairs()
   local autopairs = require 'nvim-autopairs'
 
@@ -77,19 +73,6 @@ function config.r()
     setwd = "file",
   }
   vim.g.r_indent_align_args = 0 -- avoid wasteful indentation
-end
-
-function config.treesitter()
-  require('nvim-treesitter.configs').setup {
-    auto_install = true,
-    highlight = {
-      enable = true,
-      disable = function(lang, bufnr)
-        if lang == 'latex' then return true end
-        return vim.api.nvim_buf_line_count(bufnr) > 9999
-      end
-    }
-  }
 end
 
 function config.lspconfig()

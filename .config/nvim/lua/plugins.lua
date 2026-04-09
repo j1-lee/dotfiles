@@ -1,46 +1,50 @@
-require('packer').startup(function(use)
+local config = require 'config'
 
-  local config = require 'config'
+local function use(plugins)
+  for _, plugin in ipairs(plugins) do
+    local src, cfg = unpack(plugin)
+    local req = plugin.requires
+    if req then use(req) end
+    vim.pack.add { "https://github.com/" .. src }
+    if cfg then cfg() end
+  end
+end
 
-  use 'wbthomason/packer.nvim'
+use {
 
-  -- colorscheme
-  use { 'rebelot/kanagawa.nvim', config = config.kanagawa }
-
-  -- status
-  use { 'nvim-lualine/lualine.nvim', config = config.lualine }
-  use { 'lewis6991/gitsigns.nvim', config = config.gitsigns }
+  -- colorscheme and status
+  { 'rebelot/kanagawa.nvim', config.kanagawa },
+  { 'nvim-lualine/lualine.nvim', config.lualine },
+  { 'lewis6991/gitsigns.nvim', config.gitsigns },
 
   -- editing
-  use 'tpope/vim-commentary'
-  use { 'kylechui/nvim-surround', config = config.surround }
-  use { 'windwp/nvim-autopairs', config = config.autopairs }
-  use { 'junegunn/vim-easy-align', config = config.easy_align }
+  { 'windwp/nvim-autopairs', config.autopairs },
+  { 'junegunn/vim-easy-align', config.easy_align },
+  { 'kylechui/nvim-surround' },
 
   -- filetypes
-  use 'lervag/vimtex'
-  use { 'j1-lee/vim-maki', config = config.maki }
-  use { 'R-nvim/R.nvim', config = config.r }
-  use { 'nvim-treesitter/nvim-treesitter', config = config.treesitter }
+  { 'j1-lee/vim-maki', config.maki },
+  { 'R-nvim/R.nvim', config.r },
+  { 'lervag/vimtex' },
+  { 'nvim-treesitter/nvim-treesitter' },
 
   -- LSP, completion, and snippet
-  use { 'neovim/nvim-lspconfig', config = config.lspconfig }
-  use {
-    'hrsh7th/nvim-cmp', config = config.cmp,
-    requires = { -- completion sources
-      'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-omni',
+  {
+    'hrsh7th/nvim-cmp', config.cmp,
+    requires = {
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-omni' },
     }
-  }
-  use { 'L3MON4D3/LuaSnip', config = config.luasnip }
+  },
+  { 'L3MON4D3/LuaSnip', config.luasnip },
+  { 'neovim/nvim-lspconfig', config.lspconfig },
 
   -- others
-  use { 'ludovicchabant/vim-gutentags', config = config.gutentags }
-  use {
-    'nvim-telescope/telescope.nvim', config = config.telescope,
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
+  { 'ludovicchabant/vim-gutentags', config.gutentags },
+  {
+    'nvim-telescope/telescope.nvim', config.telescope,
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  },
 
-end)
+}
