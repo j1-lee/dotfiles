@@ -2,8 +2,8 @@ local config = require 'config'
 
 local function use(plugins)
   for _, plugin in ipairs(plugins) do
-    local src, cfg = unpack(plugin)
-    local req = plugin.requires
+    if type(plugin) == "string" then plugin = { plugin } end
+    local req, src, cfg = plugin.requires, unpack(plugin)
     if req then use(req) end
     vim.pack.add { "https://github.com/" .. src }
     if cfg then cfg() end
@@ -31,11 +31,7 @@ use {
   -- LSP, completion, and snippet
   {
     'hrsh7th/nvim-cmp', config.cmp,
-    requires = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-omni' },
-    }
+    requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-omni' }
   },
   { 'L3MON4D3/LuaSnip', config.luasnip },
   { 'neovim/nvim-lspconfig', config.lspconfig },
@@ -44,7 +40,7 @@ use {
   { 'ludovicchabant/vim-gutentags', config.gutentags },
   {
     'nvim-telescope/telescope.nvim', config.telescope,
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { 'nvim-lua/plenary.nvim' }
   },
 
 }
